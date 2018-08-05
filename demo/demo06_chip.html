@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+// Load the texture
+// It will be named: Draw16.texture.ground
+// You can use it before it is loaded, it will not draw though
+// Feel free to write a preloader that waits until everything is fully loaded
+Draw16.loadTextureAsync('ground', 'ressources/ground.png');
+
+// Lets also load sea elements
+Draw16.loadTextureAsync('seastuff', 'ressources/seastuff.png');
+
+Draw16.onStep = function() {
+
+	// Draw a single chip of ground
+	// There are multiple chips in this texture
+	// We pick the first (grass at 0,0) and draw it at position 16,16
+	Draw16.drawChip(Draw16.texture.ground, 0, 0, 16, 16);
+
+	// Sand is the second chip (1,0) in the ground texture
+	Draw16.drawChip(Draw16.texture.ground, 1, 0, 48, 16);
+
+	// You can draw transparent elements on the ground
+	Draw16.drawChip(Draw16.texture.ground, 1, 0, 80, 16);
+	Draw16.drawChip(Draw16.texture.seastuff, 0, 2, 80, 16);
+
+	// Water (2,0) is semi transparent and can be drawn over the ground
+	// Water over grass
+	Draw16.drawChip(Draw16.texture.ground, 0, 0, 16, 48);
+	Draw16.drawChip(Draw16.texture.ground, 2, 0, 16, 48);
+
+	// Water over sand
+	Draw16.drawChip(Draw16.texture.ground, 1, 0, 48, 48);
+	Draw16.drawChip(Draw16.texture.ground, 2, 0, 48, 48);
+
+	// Water over sand and starfish
+	Draw16.drawChip(Draw16.texture.ground, 1, 0, 80, 48);
+	Draw16.drawChip(Draw16.texture.seastuff, 0, 2, 80, 48);
+	Draw16.drawChip(Draw16.texture.ground, 2, 0, 80, 48);
+
+}
+
+		</script>
+	</body>
+</html>

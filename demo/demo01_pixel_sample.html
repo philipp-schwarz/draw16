@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+Draw16.onStep = function() {
+
+	// Colors are formated in BLUE, GREEN, RED (BGR)
+	// This is different to many RGB standards, like in HTML
+	// Format: 0xBBGGRR
+	//
+	// 0x0000ff is red
+	// 0x00ff00 is green
+	// 0xff0000 is blue
+
+	// Draw a single red pixel
+	Draw16.drawPixel(0x0000ff, 50, 50);
+
+	// Draw a single green pixel
+	Draw16.drawPixel(0x00ff00, 100, 50);
+
+	// Draw a single blue pixel
+	Draw16.drawPixel(0xff0000, 150, 50);
+
+	// You can use Draw16.color to pick a color using RGB standard
+	// Keep in mind that this is slower
+	// Do it outside the step function if you can - we keep it here to make things simple
+
+	var red = Draw16.color(255, 0, 0);
+	var green = Draw16.color(0, 255, 0);
+	var blue = Draw16.color(0, 0, 255);
+	
+	Draw16.drawPixel(red, 50, 100);
+
+	// Use the Draw16.step value for animations
+	var greenPulse = Draw16.color(0, Draw16.step%256, 0);
+	Draw16.drawPixel(greenPulse, 100, 100);
+
+
+	// Create a color from random values
+	var disco = Draw16.color(
+		Math.floor(Math.random() * 256),
+		Math.floor(Math.random() * 256),
+		Math.floor(Math.random() * 256)
+	);
+	Draw16.drawPixel(disco, 150, 100);
+
+}
+
+		</script>
+	</body>
+</html>

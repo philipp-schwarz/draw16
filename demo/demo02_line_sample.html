@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+Draw16.onStep = function() {
+
+	for (var i=0; i<15*16; i+=16) {
+		Draw16.drawLine(0x00ff00, 0, i, i, 15*16);
+	}
+
+}
+
+		</script>
+	</body>
+</html>

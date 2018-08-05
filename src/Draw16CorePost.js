@@ -1,0 +1,1 @@
+SDL.receiveEvent = function(event) {}

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+Draw16.onStep = function() {
+
+	// Colors are formated in BLUE, GREEN, RED (BGR)
+	// This is different to many RGB standards, like in HTML
+	// Format: 0xBBGGRR
+	//
+	// 0x0000ff is red
+	// 0x00ff00 is green
+	// 0xff0000 is blue
+
+	// Draw a single red pixel
+	Draw16.drawPixel(0x0000ff, 50, 50);
+
+	// Draw a single green pixel
+	Draw16.drawPixel(0x00ff00, 100, 50);
+
+	// Draw a single blue pixel
+	Draw16.drawPixel(0xff0000, 150, 50);
+
+	// You can use Draw16.color to pick a color using RGB standard
+	// Keep in mind that this is slower
+	// Do it outside the step function if you can - we keep it here to make things simple
+
+	var red = Draw16.color(255, 0, 0);
+	var green = Draw16.color(0, 255, 0);
+	var blue = Draw16.color(0, 0, 255);
+	
+	Draw16.drawPixel(red, 50, 100);
+
+	// Use the Draw16.step value for animations
+	var greenPulse = Draw16.color(0, Draw16.step%256, 0);
+	Draw16.drawPixel(greenPulse, 100, 100);
+
+
+	// Create a color from random values
+	var disco = Draw16.color(
+		Math.floor(Math.random() * 256),
+		Math.floor(Math.random() * 256),
+		Math.floor(Math.random() * 256)
+	);
+	Draw16.drawPixel(disco, 150, 100);
+
+	// A word about performance:
+	// Of cause you can use this for drawing large images
+	// Drawing a single pixel is super fast
+	// Filling a screen of 256x240 pixels would need 61.440 drawing operations
+	// Using drawPixel to fill the screen will turn out to be horror-slow
+	// Use chip drawing functions whenever you can
+
+	// This is a pixel art example, space invaders style
+	// Just comment out the pixels that you do not need
+
+	Draw16.drawPixel(red, 50+0, 150+0);
+	//Draw16.drawPixel(red, 50+1, 150+0);
+	//Draw16.drawPixel(red, 50+2, 150+0);
+	//Draw16.drawPixel(red, 50+3, 150+0);
+	//Draw16.drawPixel(red, 50+4, 150+0);
+	//Draw16.drawPixel(red, 50+5, 150+0);
+	//Draw16.drawPixel(red, 50+6, 150+0);
+	Draw16.drawPixel(red, 50+7, 150+0);
+	
+	//Draw16.drawPixel(red, 50+0, 150+1);
+	Draw16.drawPixel(red, 50+1, 150+1);
+	//Draw16.drawPixel(red, 50+2, 150+1);
+	Draw16.drawPixel(red, 50+3, 150+1);
+	Draw16.drawPixel(red, 50+4, 150+1);
+	//Draw16.drawPixel(red, 50+5, 150+1);
+	Draw16.drawPixel(red, 50+6, 150+1);
+	//Draw16.drawPixel(red, 50+7, 150+1);
+	
+	//Draw16.drawPixel(red, 50+0, 150+2);
+	Draw16.drawPixel(red, 50+1, 150+2);
+	Draw16.drawPixel(red, 50+2, 150+2);
+	Draw16.drawPixel(red, 50+3, 150+2);
+	Draw16.drawPixel(red, 50+4, 150+2);
+	Draw16.drawPixel(red, 50+5, 150+2);
+	Draw16.drawPixel(red, 50+6, 150+2);
+	//Draw16.drawPixel(red, 50+7, 150+2);
+	
+	Draw16.drawPixel(red, 50+0, 150+3);
+	Draw16.drawPixel(red, 50+1, 150+3);
+	//Draw16.drawPixel(red, 50+2, 150+3);
+	Draw16.drawPixel(red, 50+3, 150+3);
+	Draw16.drawPixel(red, 50+4, 150+3);
+	//Draw16.drawPixel(red, 50+5, 150+3);
+	Draw16.drawPixel(red, 50+6, 150+3);
+	Draw16.drawPixel(red, 50+7, 150+3);
+
+	//Draw16.drawPixel(red, 50+0, 150+4);
+	Draw16.drawPixel(red, 50+1, 150+4);
+	//Draw16.drawPixel(red, 50+2, 150+4);
+	Draw16.drawPixel(red, 50+3, 150+4);
+	Draw16.drawPixel(red, 50+4, 150+4);
+	//Draw16.drawPixel(red, 50+5, 150+4);
+	Draw16.drawPixel(red, 50+6, 150+4);
+	//Draw16.drawPixel(red, 50+7, 150+4);
+	
+	//Draw16.drawPixel(red, 50+0, 150+5);
+	//Draw16.drawPixel(red, 50+1, 150+5);
+	Draw16.drawPixel(red, 50+2, 150+5);
+	Draw16.drawPixel(red, 50+3, 150+5);
+	Draw16.drawPixel(red, 50+4, 150+5);
+	Draw16.drawPixel(red, 50+5, 150+5);
+	//Draw16.drawPixel(red, 50+6, 150+5);
+	//Draw16.drawPixel(red, 50+7, 150+5);
+	
+	//Draw16.drawPixel(red, 50+0, 150+6);
+	Draw16.drawPixel(red, 50+1, 150+6);
+	//Draw16.drawPixel(red, 50+2, 150+6);
+	Draw16.drawPixel(red, 50+3, 150+6);
+	Draw16.drawPixel(red, 50+4, 150+6);
+	//Draw16.drawPixel(red, 50+5, 150+6);
+	Draw16.drawPixel(red, 50+6, 150+6);
+	//Draw16.drawPixel(red, 50+7, 150+6);
+
+	Draw16.drawPixel(red, 50+0, 150+7);
+	//Draw16.drawPixel(red, 50+1, 150+7);
+	//Draw16.drawPixel(red, 50+2, 150+7);
+	Draw16.drawPixel(red, 50+3, 150+7);
+	Draw16.drawPixel(red, 50+4, 150+7);
+	//Draw16.drawPixel(red, 50+5, 150+7);
+	//Draw16.drawPixel(red, 50+6, 150+7);
+	Draw16.drawPixel(red, 50+7, 150+7);
+
+
+	// Woah woah woag....
+	// Here comes green pixel invader
+	// On it's way to destroy earth and lífe as we know it
+
+	// Set some frame dependent variables
+	var mouthOpen = Math.floor(Draw16.step / 5) % 2;
+
+	//Draw16.drawPixel(green, 100+0, 150+0);
+	Draw16.drawPixel(green, 100+1, 150+0);
+	//Draw16.drawPixel(green, 100+2, 150+0);
+	Draw16.drawPixel(green, 100+3, 150+0);
+	Draw16.drawPixel(green, 100+4, 150+0);
+	//Draw16.drawPixel(green, 100+5, 150+0);
+	Draw16.drawPixel(green, 100+6, 150+0);
+	//Draw16.drawPixel(green, 100+7, 150+0);
+	
+	//Draw16.drawPixel(green, 100+0, 150+1);
+	//Draw16.drawPixel(green, 100+1, 150+1);
+	Draw16.drawPixel(green, 100+2, 150+1);
+	Draw16.drawPixel(green, 100+3, 150+1);
+	Draw16.drawPixel(green, 100+4, 150+1);
+	Draw16.drawPixel(green, 100+5, 150+1);
+	//Draw16.drawPixel(green, 100+6, 150+1);
+	//Draw16.drawPixel(green, 100+7, 150+1);
+	
+	//Draw16.drawPixel(green, 100+0, 150+2);
+	Draw16.drawPixel(green, 100+1, 150+2);
+	Draw16.drawPixel(green, 100+2, 150+2);
+	Draw16.drawPixel(green, 100+3, 150+2);
+	Draw16.drawPixel(green, 100+4, 150+2);
+	Draw16.drawPixel(green, 100+5, 150+2);
+	Draw16.drawPixel(green, 100+6, 150+2);
+	//Draw16.drawPixel(green, 100+7, 150+2);
+	
+	Draw16.drawPixel(green, 100+0, 150+3);
+	Draw16.drawPixel(green, 100+1, 150+3);
+	//Draw16.drawPixel(green, 100+2, 150+3);
+	Draw16.drawPixel(green, 100+3, 150+3);
+	Draw16.drawPixel(green, 100+4, 150+3);
+	//Draw16.drawPixel(green, 100+5, 150+3);
+	Draw16.drawPixel(green, 100+6, 150+3);
+	Draw16.drawPixel(green, 100+7, 150+3);
+
+	//Draw16.drawPixel(green, 100+0, 150+4);
+	Draw16.drawPixel(green, 100+1, 150+4);
+	Draw16.drawPixel(green, 100+2, 150+4);
+	Draw16.drawPixel(green, 100+3, 150+4);
+	Draw16.drawPixel(green, 100+4, 150+4);
+	Draw16.drawPixel(green, 100+5, 150+4);
+	Draw16.drawPixel(green, 100+6, 150+4);
+	//Draw16.drawPixel(green, 100+7, 150+4);
+	
+	//Draw16.drawPixel(green, 100+0, 150+5);
+	Draw16.drawPixel(green, 100+1, 150+5);
+	Draw16.drawPixel(green, 100+2, 150+5);
+	//Draw16.drawPixel(green, 100+3, 150+5);
+	//Draw16.drawPixel(green, 100+4, 150+5);
+	Draw16.drawPixel(green, 100+5, 150+5);
+	Draw16.drawPixel(green, 100+6, 150+5);
+	//Draw16.drawPixel(green, 100+7, 150+5);
+	
+	//Draw16.drawPixel(green, 100+0, 150+6);
+	//Draw16.drawPixel(green, 100+1, 150+6);
+	Draw16.drawPixel(green, 100+2, 150+6);
+	if (mouthOpen) Draw16.drawPixel(green, 100+3, 150+6);
+	if (mouthOpen) Draw16.drawPixel(green, 100+4, 150+6);
+	Draw16.drawPixel(green, 100+5, 150+6);
+	//Draw16.drawPixel(green, 100+6, 150+6);
+	//Draw16.drawPixel(green, 100+7, 150+6);
+
+	//Draw16.drawPixel(green, 100+0, 150+7);
+	//Draw16.drawPixel(green, 100+1, 150+7);
+	//Draw16.drawPixel(green, 100+2, 150+7);
+	Draw16.drawPixel(green, 100+3, 150+7);
+	Draw16.drawPixel(green, 100+4, 150+7);
+	//Draw16.drawPixel(green, 100+5, 150+7);
+	//Draw16.drawPixel(green, 100+6, 150+7);
+	//Draw16.drawPixel(green, 100+7, 150+7);
+
+
+	// Okay okay...
+	// Full stop green
+	// Blue is taking over the world now
+
+	// Let's move him a little
+	var x = Math.abs(Math.floor(Draw16.step/5) % 16 - 8);
+
+	//Draw16.drawPixel(blue, x+150+0, 150+0);
+	//Draw16.drawPixel(blue, x+150+1, 150+0);
+	Draw16.drawPixel(blue, x+150+2, 150+0);
+	//Draw16.drawPixel(blue, x+150+3, 150+0);
+	//Draw16.drawPixel(blue, x+150+4, 150+0);
+	Draw16.drawPixel(blue, x+150+5, 150+0);
+	//Draw16.drawPixel(blue, x+150+6, 150+0);
+	//Draw16.drawPixel(blue, x+150+7, 150+0);
+	
+	//Draw16.drawPixel(blue, x+150+0, 150+1);
+	Draw16.drawPixel(blue, x+150+1, 150+1);
+	//Draw16.drawPixel(blue, x+150+2, 150+1);
+	//Draw16.drawPixel(blue, x+150+3, 150+1);
+	//Draw16.drawPixel(blue, x+150+4, 150+1);
+	//Draw16.drawPixel(blue, x+150+5, 150+1);
+	Draw16.drawPixel(blue, x+150+6, 150+1);
+	//Draw16.drawPixel(blue, x+150+7, 150+1);
+	
+	//Draw16.drawPixel(blue, x+150+0, 150+2);
+	Draw16.drawPixel(blue, x+150+1, 150+2);
+	Draw16.drawPixel(blue, x+150+2, 150+2);
+	Draw16.drawPixel(blue, x+150+3, 150+2);
+	Draw16.drawPixel(blue, x+150+4, 150+2);
+	Draw16.drawPixel(blue, x+150+5, 150+2);
+	Draw16.drawPixel(blue, x+150+6, 150+2);
+	//Draw16.drawPixel(blue, x+150+7, 150+2);
+	
+	Draw16.drawPixel(blue, x+150+0, 150+3);
+	Draw16.drawPixel(blue, x+150+1, 150+3);
+	//Draw16.drawPixel(blue, x+150+2, 150+3);
+	Draw16.drawPixel(blue, x+150+3, 150+3);
+	Draw16.drawPixel(blue, x+150+4, 150+3);
+	//Draw16.drawPixel(blue, x+150+5, 150+3);
+	Draw16.drawPixel(blue, x+150+6, 150+3);
+	Draw16.drawPixel(blue, x+150+7, 150+3);
+
+	Draw16.drawPixel(blue, x+150+0, 150+4);
+	Draw16.drawPixel(blue, x+150+1, 150+4);
+	Draw16.drawPixel(blue, x+150+2, 150+4);
+	Draw16.drawPixel(blue, x+150+3, 150+4);
+	Draw16.drawPixel(blue, x+150+4, 150+4);
+	Draw16.drawPixel(blue, x+150+5, 150+4);
+	Draw16.drawPixel(blue, x+150+6, 150+4);
+	Draw16.drawPixel(blue, x+150+7, 150+4);
+	
+	//Draw16.drawPixel(blue, x+150+0, 150+5);
+	//Draw16.drawPixel(blue, x+150+1, 150+5);
+	Draw16.drawPixel(blue, x+150+2, 150+5);
+	Draw16.drawPixel(blue, x+150+3, 150+5);
+	Draw16.drawPixel(blue, x+150+4, 150+5);
+	Draw16.drawPixel(blue, x+150+5, 150+5);
+	//Draw16.drawPixel(blue, x+150+6, 150+5);
+	//Draw16.drawPixel(blue, x+150+7, 150+5);
+	
+	//Draw16.drawPixel(blue, x+150+0, 150+6);
+	Draw16.drawPixel(blue, x+150+1, 150+6);
+	//Draw16.drawPixel(blue, x+150+2, 150+6);
+	Draw16.drawPixel(blue, x+150+3, 150+6);
+	Draw16.drawPixel(blue, x+150+4, 150+6);
+	//Draw16.drawPixel(blue, x+150+5, 150+6);
+	Draw16.drawPixel(blue, x+150+6, 150+6);
+	//Draw16.drawPixel(blue, x+150+7, 150+6);
+
+	//Draw16.drawPixel(blue, x+150+0, 150+7);
+	//Draw16.drawPixel(blue, x+150+1, 150+7);
+	//Draw16.drawPixel(blue, x+150+2, 150+7);
+	Draw16.drawPixel(blue, x+150+3, 150+7);
+	Draw16.drawPixel(blue, x+150+4, 150+7);
+	//Draw16.drawPixel(blue, x+150+5, 150+7);
+	//Draw16.drawPixel(blue, x+150+6, 150+7);
+	//Draw16.drawPixel(blue, x+150+7, 150+7);
+
+	
+}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);		// Screen resolution, 256x240 for retro games
+Draw16.installFullscreen();	// Fullscreen mode, usually that is what you want
+Draw16.fps = 25;			// Frames per second, do not use values over 60, use 25 for retro games
+
+// Load all textures to Draw16.texture
+Draw16.loadTextureAsync('mask', 'ressources/mask.png');
+Draw16.loadTextureAsync('font', 'ressources/font.png');
+
+Draw16.loadTextureAsync('ground', 'ressources/ground.png');
+Draw16.loadTextureAsync('seastuff', 'ressources/seastuff.png');
+Draw16.loadTextureAsync('tree', 'ressources/tree.png');
+Draw16.loadTextureAsync('treemini', 'ressources/treemini.png');
+Draw16.loadTextureAsync('box1', 'ressources/box1.png');
+Draw16.loadTextureAsync('box2', 'ressources/box2.png');
+Draw16.loadTextureAsync('stone', 'ressources/stone.png');
+
+Draw16.onStep = function() {
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Draw the ground as area (repeated)
+	// Grass at position 0, 0 - 8 x 15 times
+	Draw16.drawArea(Draw16.texture.ground, 0, 0, 8, 15, 0, 0, 1, 1);
+	// Sand at position 8, 0 - 8 x 15 times
+	Draw16.drawArea(Draw16.texture.ground, 8*16, 0, 8, 15, 1, 0, 1, 1);
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Draw signle chips
+	// Rocks
+	Draw16.drawChip(Draw16.texture.seastuff, 0, 0, 10*16, 1*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 1, 0, 11*16, 2*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 2, 0, 12*16, 1*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 3, 0, 13*16, 2*16);
+	// Plants
+	Draw16.drawChip(Draw16.texture.seastuff, 0, 1, 10*16, 4*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 1, 1, 11*16, 5*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 2, 1, 12*16, 4*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 3, 1, 13*16, 5*16);
+	// Sea stuff
+	Draw16.drawChip(Draw16.texture.seastuff, 0, 2, 10*16, 7*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 1, 2, 11*16, 8*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 2, 2, 12*16, 7*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 3, 2, 13*16, 8*16);
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Draw multichip elements
+	// You can either make multiple calls or use drawArea
+	// We use drawArea ;-)
+	// You don't need width and height, when you draw the whole texture
+
+	// Some trees
+	Draw16.drawArea(Draw16.texture.tree, -2*16, -2*16);
+	Draw16.drawArea(Draw16.texture.tree, 0*16, -2*16);
+	Draw16.drawArea(Draw16.texture.tree, 2*16, -2*16);
+	Draw16.drawArea(Draw16.texture.tree, 4*16, -2*16);
+
+	Draw16.drawArea(Draw16.texture.tree, -1*16, 0*16);
+	Draw16.drawArea(Draw16.texture.tree, 1*16, 0*16);
+
+	Draw16.drawArea(Draw16.texture.tree, -2*16, 2*16);
+	Draw16.drawArea(Draw16.texture.tree, 0*16, 2*16);
+	
+	Draw16.drawArea(Draw16.texture.tree, -1*16, 4*16);
+	
+	// A small tree
+	Draw16.drawArea(Draw16.texture.treemini, 4*16, 5*16);
+
+	// Boxes
+	Draw16.drawArea(Draw16.texture.box1, 2*16, 7*16);
+	Draw16.drawArea(Draw16.texture.box2, 4*16, 7*16);
+	
+	// A stone
+	Draw16.drawChip(Draw16.texture.stone, 0, 0, 6*16, 8*16);
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Underwater area
+
+	// Sand
+	// Draw it 16 pixels over the bounds!
+	Draw16.drawArea(Draw16.texture.ground, 7*16, 10*16, 10, 5, 1, 0, 1, 1);
+
+	// A box, stone and underwater stuff
+	Draw16.drawArea(Draw16.texture.box1, 9*16, 11*16);
+	Draw16.drawArea(Draw16.texture.stone, 11*16, 11*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 2, 2, 12*16, 13*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 0, 2, 13*16, 12*16);
+	Draw16.drawChip(Draw16.texture.seastuff, 1, 2, 14*16, 11*16);
+
+	// Distort effect
+	for (var y=16*10; y<240; y++) {
+		Draw16.d16DrawShiftLineH(y, Math.round(Math.cos((y+Draw16.step/4)/8)*3));
+	}
+
+	// Water
+	Draw16.drawArea(Draw16.texture.ground, 8*16, 10*16, 8, 5, 2, 0, 1, 1);
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Drawing area
+
+	Draw16.drawArea(Draw16.texture.ground, 0*16, 10*16, 8, 5, 3, 0, 1, 1);
+
+	Draw16.drawPixel(0xff0000, 0*16+4, 10*16+4);
+	Draw16.drawPixel(0x00ff00, 1*16+4, 10*16+4);
+	Draw16.drawPixel(0x0000ff, 2*16+4, 10*16+4);
+	
+	Draw16.drawLine(0x0000ff, 0*16+4, 11*16+4, 2*16+4, 11*16+4);
+	Draw16.drawLine(0x00ffff, 0*16+4, 11*16+4, 2*16+4, 12*16+4);
+	Draw16.drawLine(0x00ff00, 0*16+4, 11*16+4, 2*16+4, 13*16+4);
+	Draw16.drawLine(0xffff00, 0*16+4, 11*16+4, 2*16+4, 14*16+4);
+	Draw16.drawLine(0xff0000, 0*16+4, 11*16+4, 2*16+4, 15*16+4);
+
+	Draw16.drawRectangle(0x0080ff, 4*16, 11*16, 8, 16);
+	Draw16.drawRectangleFill(0x00ff80, 4*16, 13*16, 8, 16);
+	
+	Draw16.drawEllipse(0x80ff00, 5*16, 11*16, 8, 16);
+	Draw16.drawEllipseFill(0xff8000, 5*16, 13*16, 8, 16);
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Mask
+	Draw16.drawArea(Draw16.texture.mask, 0, 0);
+
+}
+
+Draw16.flush();
+
+		</script>
+	</body>
+</html>

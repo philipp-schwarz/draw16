@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+Draw16.loadTextureAsync('grass', 'ressources/grass.png');
+Draw16.loadTextureAsync('ground', 'ressources/ground.png');
+
+Draw16.onStep = function() {
+
+	// Draw area - full texture size, only 1x1 in this case
+	Draw16.drawArea(Draw16.texture.grass, 0, 0);
+
+	// Draw area 2x2
+	Draw16.drawArea(Draw16.texture.grass, 32, 0, 2, 2);
+
+	// Draw area 8x8 from texture at 0,1 size 1x1
+	Draw16.drawArea(Draw16.texture.ground, 0, 64, 8, 8, 1, 0, 1, 1);
+}
+
+		</script>
+	</body>
+</html>

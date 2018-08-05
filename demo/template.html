@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Template</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+// Screen resolution
+Draw16.init(256, 240);
+
+// Set the drawing area fullscreen
+Draw16.installFullscreen();
+
+// Frames per second (24 = retro, 30 = modern, 60 = fast)
+//   Draw16.fps = 30;
+
+// Hide the default mouse cursor
+//   Draw16.mouseHide = true;
+
+// Load font, uncomment if you need text
+//   Draw16.loadTextureAsync('font', 'ressources/font.png');
+
+// Setup everything else here
+
+Draw16.onStep = function() {
+
+	// Your application code goes here
+
+
+}
+
+		</script>
+	</body>
+</html>

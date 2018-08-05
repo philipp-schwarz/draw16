@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+Draw16.onStep = function() {
+
+	// Fill a blue rectangle
+	Draw16.drawRectangleFill(0xff0000, 125, 75, 50, 100);
+	
+	// Fill a green bordered rectangle
+	Draw16.drawRectangleFill(0x008000, 75, 110, 75, 50);
+	Draw16.drawRectangle(0x00ff00, 75, 110, 75, 50);
+
+	// Draw a red rectangle
+	Draw16.drawRectangle(0x0000ff, 60, 50, 100, 75);
+
+}
+
+		</script>
+	</body>
+</html>

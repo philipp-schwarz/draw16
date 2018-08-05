@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+// Load the font texture
+// It will be named: Draw16.texture.font
+// You can use it before it is loaded, it will not draw though
+// Make sure to add your language characters to the font.png file
+// German characters ÄÖÜäöüß are already included
+Draw16.loadTextureAsync('font', 'ressources/font.png');
+
+Draw16.onStep = function() {
+
+	// Clear the screen with green color
+	Draw16.drawRectangleFill(0x006000, 0, 0, 256, 240);
+
+	// Text uses 8 pixel instead of 16
+	// We use the loaded font,
+	// subfont 0 (usually 1 for bold, depends on the font),
+	// white text color (0xffffff),
+	// output "Hello World"
+	// and draw everything at 16,16
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'Hello world!', 16, 16);
+
+	// Draw black text as shadow
+	Draw16.drawText8(Draw16.texture.font, 0, 0x000000, 'Hello shadow!', 80+1, 16);
+	Draw16.drawText8(Draw16.texture.font, 0, 0x000000, 'Hello shadow!', 80+1, 16+1);
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'Hello shadow!', 80, 16);
+
+	// Draw 1 pixel offset to every side for an outline
+	Draw16.drawText8(Draw16.texture.font, 0, 0x000000, 'Hello outline!', 144+1, 16);
+	Draw16.drawText8(Draw16.texture.font, 0, 0x000000, 'Hello outline!', 144-1, 16);
+	Draw16.drawText8(Draw16.texture.font, 0, 0x000000, 'Hello outline!', 144, 16+1);
+	Draw16.drawText8(Draw16.texture.font, 0, 0x000000, 'Hello outline!', 144, 16-1);
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'Hello outline!', 144, 16);
+
+	// Colors work as usual
+	Draw16.drawText8(Draw16.texture.font, 0, 0xff0000, 'This is blue', 16, 32);
+
+	// There can be multiple fonts in one file, number 1 is usualy bold
+	Draw16.drawText8(Draw16.texture.font, 1, 0xffffff, 'This is bold', 16, 48);
+
+	// Special characters need a ~ right before them
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, '~8~8~2~2~4~6~4~6~-~+', 16, 64);
+	
+	// Monospace fonts
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, '[TODO: Monospace fonts]', 16, 80);
+
+	// German characters
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, '~A~O~U~a~o~u~s~~', 16, 112);
+
+	// Every letter in the alphabet
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'The quick onyx goblin jumps over the lazy dwarf', 16, 128);
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789', 16, 144);
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'abcdefghijklmnopqrstuvwxyz !"§$%&/()=?{[]}\\<>;,:.-_', 16, 160);
+
+}
+
+		</script>
+	</body>
+</html>

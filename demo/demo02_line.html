@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+Draw16.onStep = function() {
+
+	// Draw a red line
+	Draw16.drawLine(0x0000ff, 0, 50, 50, 100);
+
+	// Draw a green line
+	Draw16.drawLine(0x00ff00, 0, 50, 50, 150);
+
+	// Draw a blue line
+	Draw16.drawLine(0xff0000, 0, 50, 50, 200);
+	
+	// Animation
+	var x = Draw16.step % 100;
+	var color = Draw16.color((Draw16.step % 100)*2.55, 0, 0);
+
+	// Draw line
+	Draw16.drawLine(color, 150, 50, 100+x, 100);
+}
+
+		</script>
+	</body>
+</html>

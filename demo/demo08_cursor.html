@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+// Hide the default mouse cursor
+Draw16.mouseHide = true;
+
+Draw16.loadTextureAsync('font', 'ressources/font.png');
+
+Draw16.onStep = function() {
+
+	// Draw a custom cursor
+	Draw16.drawEllipse(0x0000ff, Draw16.mouseX-5, Draw16.mouseY-5, 10, 10);
+
+}
+
+		</script>
+	</body>
+</html>

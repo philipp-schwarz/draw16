@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+Draw16.onStep = function() {
+
+	// Ellipses work simmilar to rectangles
+
+	// Fill a blue ellipse
+	Draw16.drawEllipseFill(0xff0000, 125, 75, 50, 100);
+	
+	// Fill a green bordered ellipse
+	Draw16.drawEllipseFill(0x008000, 75, 110, 75, 50);
+	Draw16.drawEllipse(0x00ff00, 75, 110, 75, 50);
+
+	// Draw a red ellipse
+	Draw16.drawEllipse(0x0000ff, 60, 50, 100, 75);
+
+}
+
+		</script>
+	</body>
+</html>

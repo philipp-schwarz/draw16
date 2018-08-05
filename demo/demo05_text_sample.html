@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+Draw16.loadTextureAsync('font', 'ressources/font.png');
+
+var history = '';
+var input = '';
+
+window.onkeydown = function(e) {
+	console.log(e);
+	if (e.key == 'Backspace')
+		input = input.substr(0, input.length-1);
+	if (e.key.length == 1)
+		input += e.key;
+}
+
+Draw16.onStep = function() {
+
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, '(g) 1337 MircoSome FAKEDOS', 0, 10);
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'All rights abroad', 0, 20);
+
+	// DOS CLI
+	var text = 'C:\\>';
+	text += input;
+	if (Math.floor(Draw16.step/10) % 2)
+		text += '_';
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, text, 0, 40);
+
+	// Some hearts
+	Draw16.drawText8(Draw16.texture.font, 0, 0x0000ff, '~)~)~(', 216, 10);
+
+	// Some rupees
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, '~& 500', 216, 20);
+
+	// Frames per second and load
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'FPS '+Draw16.fpsLast+'/'+Draw16.fps, 198, 210);
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'LOAD '+Draw16.load+'%', 198, 220);
+
+}
+
+		</script>
+	</body>
+</html>
