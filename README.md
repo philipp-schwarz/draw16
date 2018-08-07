@@ -16,7 +16,7 @@ Draw16 draws pixels, text, lines, rectangles, ellipses and chips (16x16 pixel te
 
 Use Firefox for development. Or Chrome with the parameter --allow-file-access-from-files. Or use a webserver. Maybe... just use Firefox.
 
-To get started quickly select a demo and edit it to your needs. Playing with functions and parameters might me easier than to read the whole documentation.
+To get started quickly select a demo and edit it to your needs. Playing with functions and parameters might be easier than to read the whole documentation.
 
 ### The main structure explained
 
@@ -36,6 +36,32 @@ A callback function is called on every redraw:
 	}
 
 See *template.html* for a complete example.
+
+## Performance
+
+If you use Draw16 wrong you will suffer with poor performance. There is no need to read the whole documentation, but you should read this:  
+
+Always take care of the transparency in your chips / textures. This is key.
+
+![](docimg/trans0.png "")  
+**No transparency - super fast**  
+Chips without transparency get a special boost and are drawn super fast. Make sure that not a single pixel in your sprite has transparency set, not even 1%!
+
+![](docimg/trans100.png "")  
+**Full transparency - still fast**  
+When your sprite uses only full or no transparency, Draw16 still performs very well. Make sure to use only no (0%) or full (100%) transparency.
+
+![](docimg/trans50.png "")  
+**50% transparency - okay**  
+When a pixel has 50% transparency (alpha 127/128) it will be processed faster, but not super fast.
+
+![](docimg/trans25.png "")  
+**25% or 75% transparency - still okay**  
+When a pixel has 25% or 75% transparency (alpha 63/64, 191/192) it will be processed faster than fine transparency.
+
+![](docimg/transfree.png "")  
+**Fine transparency - slow**  
+Fine transparency between 0% and 100% is slow. Keep that in mind. Use it when you really need it. Try to avoid it.
 
 ## Drawing functions
 
@@ -116,36 +142,10 @@ Ground or water patterns are not supported.
 **Other resources**  
 Face sets and all other graphics that use a 16 pixel grid are supported.
 
-## Performance
-
-If you use Draw16 wrong you will suffer with poor performance. There is no need to read the whole documentation, but you should read this:  
-
-Always take care of the transparency in your chips / textures. This is key.
-
-![](docimg/trans0.png "")  
-**No transparency - super fast**  
-Chips without transparency get a special boost and are drawn super fast. Make sure that not a single pixel in your sprite has transparency set, not even 1%!
-
-![](docimg/trans100.png "")  
-**Full transparency - still fast**  
-When your sprite uses only full or no transparency, Draw16 still performs very well. Make sure to use only no (0%) or full (100%) transparency.
-
-![](docimg/trans50.png "")  
-**50% transparency - okay**  
-When a pixel has 50% transparency (alpha 127/128) it will be processed faster, but not super fast.
-
-![](docimg/trans25.png "")  
-**25% or 75% transparency - still okay**  
-When a pixel has 25% or 75% transparency (alpha 63/64, 191/192) it will be processed faster than fine transparency.
-
-![](docimg/transfree.png "")  
-**Fine transparency - slow**  
-Fine transparency between 0% and 100% is slow. Keep that in mind. Use it when you really need it. Try to avoid it.
-
 ## Limits
 
 If you need modern graphics, a screen resolution higher than 480x320, anti-aliasing, sprite rotation or fancy effects you should definitely consider using a game engine like pixi.js. I am not getting paid for saying that [pixi.js](http://www.pixijs.com/) is awesome! Give it a try. Just keep in mind that it is not optimized for low-res games.
 
-## Do you like my work?
+## Feedback
 
-Share it. Tell me. Tell others. I would love to hear that my engine is used in production. You do not like it? Tell me why. I am realy willing to improve this project. Your feedback counts - thank you!
+Do you like my work? Share it. Tell me. Tell others. I would love to hear that my engine is used in production. You do not like it? Tell me why. I am realy willing to improve this project. Your feedback counts - thank you!
