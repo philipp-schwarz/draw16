@@ -1,6 +1,6 @@
 # Draw16
 
-Draw16 is a fast graphic engine for retro games with very low screen resolution. It is made for games like from the **Super Nintendo** (Super Farmicom) or **DOS** era that use a 16 pixel grid. Draw16 is based on JavaScript and WebGL. The core is written in C++ and SDL, translated with emscripten.
+Draw16 is a fast graphic engine for retro games with very low screen resolution. It is made for games like from the **Super Nintendo** (Super Famicom) or **DOS** era that use a 16 pixel grid. Draw16 is based on JavaScript and WebGL. The core is written in C++ and SDL, translated with emscripten.
 
 ## Why should I use it?
 
@@ -39,9 +39,7 @@ See *template.html* for a complete example.
 
 ## Performance
 
-If you use Draw16 wrong you will suffer with poor performance. There is no need to read the whole documentation, but you should read this:  
-
-Always take care of the transparency in your chips / textures. This is key.
+If you use Draw16 wrong you will suffer with poor performance. There is no need to read the whole documentation, but you should read this. Always take care of the transparency in your chips / textures. This is key.
 
 ![](docimg/trans0.png "")  
 **No transparency - super fast**  
@@ -53,19 +51,35 @@ When your sprite uses only full or no transparency, Draw16 still performs very w
 
 ![](docimg/trans50.png "")  
 **50% transparency - okay**  
-When a pixel has 50% transparency (alpha 127/128) it will be processed faster, but not super fast.
+When a pixel has 50% transparency (alpha 127/128) set it will be processed faster, but not super fast.
 
 ![](docimg/trans25.png "")  
 **25% or 75% transparency - still okay**  
-When a pixel has 25% or 75% transparency (alpha 63/64, 191/192) it will be processed faster than fine transparency.
+When a pixel has 25% or 75% transparency (alpha 63/64, 191/192) set it will be processed faster than fine transparency.
 
 ![](docimg/transfree.png "")  
 **Fine transparency - slow**  
 Fine transparency between 0% and 100% is slow. Keep that in mind. Use it when you really need it. Try to avoid it.
 
-## Drawing functions
+## Colors
+
+Colors are written as hex values. Unlike many other formats Draw16 uses BGR (blue, green, red) instead of RGB, because BGR is processed faster.
+
+	var red   = 0x0000ff;
+	var green = 0x00ff00;
+	var blue  = 0xff0000;
+
+If you prefer RGB you can use the color function.
 
 **Draw16.color**(r, g, b) - convert RGB color to BGR, return it
+
+	var red   = Draw16.color(255, 0, 0);
+	var green = Draw16.color(0, 255, 0);
+	var blue  = Draw16.color(0, 0, 255);
+
+## Color drawing functions
+
+Colors can be used to draw pixels and basic shapes, filled and unfilled.
 
 ![Draw16.drawPixel](docimg/Draw16.drawPixel.png "drawPixel")  
 **Draw16.drawPixel**(color, x, y) - draw color at x, y
@@ -85,7 +99,21 @@ Fine transparency between 0% and 100% is slow. Keep that in mind. Use it when yo
 ![Draw16.drawRectangleFill](docimg/Draw16.drawRectangleFill.png "drawRectangleFill")  
 **Draw16.drawRectangleFill**(color, x, y, width, height) - fill a colored rectangle at x, y with width x height
 
-## Sprite drawing functions
+## Textures
+
+Textures are basicly images. The width and height must be a multiple of 16. Every texture consists of multiple 16x16 pixel chips. You can either draw the whole texture or selected chips of the texture.
+
+Load textures with the loadTextureAsync function
+
+	Draw16.loadTextureAsync('grass', 'ressources/grass.png');
+
+The loaded texture will be available as variable
+
+	Draw16.texture.grass
+
+Use PNG files as images for best results.
+
+## Texture drawing functions
 
 **Draw16.drawChip**(texture, chipX, chipY, targetX, targetY) - draw a single 16x16 pixel chip from texture chipX, chipY at target x,y
 
@@ -107,7 +135,7 @@ This part is under construction. Transparency, 16px height and monospace fonts a
 **Draw16.init**(width, height) - Initialize Draw16 with width x height as screen resolution  
 **Draw16.installFullscreen**() - Set the drawing area to fullscreen  
 **Draw16.loadTexture**(image) - Load an already loaded image as texture, return its id  
-**Draw16.loadTextureAsync**(name, src, cb) - Load an image from *src* as texture, *name* it and call *cb* as callback
+**Draw16.loadTextureAsync**(name, src, cb) - Load an image from src as texture, name it and call cb as callback
 
 ## Parameters
 
@@ -129,18 +157,19 @@ This part is under construction. Transparency, 16px height and monospace fonts a
 
 ## RPG Maker 2000 resources
 
-It is not possible to just import RPG Maker resources yet. But with a little extra work you can use a lot of it.
+Welcome RM2K veterans! This is what you need to know in order to use RPG Maker ressources with Draw16.
 
-**Character sets**  
-RPG Maker uses 24x32 pixel per character, but Draw16 only supports 16 pixel chips. Extend the image to 32x32 pixel per character animation frame and you are good to go.
+Facesets, panoramas, battlegrounds, titlescreens and all other graphics that fit into a 16 pixel grid are supported out of the box. Sadly, not all resources can be used yet. But with a little extra work you can use a lot of them.
 
 **Chipsets**  
+![RPG Maker Chipset](docimg/rm2k_chipset.png "RPG Maker Chipset")  
 Replace the background color with 100% transparency and you can use all chips from the set.
 Animations are not supported, but you can show and hide chips time based (see Draw16.step) which ends in the same result.
 Ground or water patterns are not supported.
 
-**Other resources**  
-Face sets and all other graphics that use a 16 pixel grid are supported.
+**Character sets**  
+![RPG Maker Charset](docimg/rm2k_charset.png "RPG Maker Charset")  
+RPG Maker uses 24x32 pixel per character, but Draw16 only supports 16 pixel chips. Extend the image to 32x32 pixel per character animation frame, remove the background color and you are good to go.
 
 ## Limits
 
