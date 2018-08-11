@@ -126,7 +126,7 @@ Use PNG files as images for best results.
 
 **Draw16.drawText8**(texture, font, color, text, x, y) - draw text at x, y using a texture, font and color  
 There can be more than one font in a texture. The default value for font is 0 and the default for bold text is 1.
-All ASCII characters are supported. Special characters can be drawn using ^ right before the character. Edit font.png to add 
+All ASCII characters are supported. Special characters can be drawn using ~ right before the character. Edit font.png to add 
 
 This part is under construction. Transparency, 16px height and monospace fonts are not available yet.
 
