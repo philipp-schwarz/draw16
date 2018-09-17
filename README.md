@@ -147,7 +147,7 @@ The drawing area will be resized to the window or screen resolution. There are m
 
 	Draw16.fitMode = Draw16.FIT_CONTAIN;
 
-Fit mode overview  
+**Fit mode overview**  
 
 ![Fit mode overview](docimg/Draw16.fitMode_overview.png "Fit mode overview")  
 
