@@ -147,27 +147,27 @@ The drawing area will be resized to the window or screen resolution. There are m
 
 	Draw16.fitMode = Draw16.FIT_CONTAIN;
 
-### Fit mode overview
+Fit mode overview  
 
 ![Fit mode overview](docimg/Draw16.fitMode_overview.png "Fit mode overview")  
 
-**Draw16.FIT_CONTAIN**
+**Draw16.FIT_CONTAIN**  
 Default setting, best for most games.
 Show everything. This leaves black bars on the side of the screen, if the screen ratio does not match.
 
-**Draw16.FIT_COVER**
-Zoom in until the screen is fully covered. Some content will be hidden on the side of the screen, if the screen ratio does not match.
+**Draw16.FIT_COVER**  
+Zoom in until the screen is fully covered. Some content will be hidden on the side of the screen, if the screen ratio does not match.  
 Hint: Use 16:9 screen ratio for good results on modern devices. Keep hidden content in mind. Consider using FIT_VERTICAL for landscape view or FIT_HORIZONTAL for portrait view.
 
-**Draw16.FIT_STRETCH**
-Stretch the drawing area to the screen.
+**Draw16.FIT_STRETCH**  
+Stretch the drawing area to the screen.  
 Hint: Use 16:9 screen ratio for good results on modern devices.
 
-**Draw16.FIT_VERTICAL**
-Zoom in until the screen fits vertical. Use this mode if you need to support multiple aspect ratios. There will be hidden content on the left or right side of the screen. 
+**Draw16.FIT_VERTICAL**  
+Zoom in until the screen fits vertical. Use this mode if you need to support multiple aspect ratios. There will be hidden content on the left or right side of the screen.  
 Hint: Use the maximum screen ratio that you want to support. Content on the left or right side will reach over the screen and will be hidden. Place your game content in the always visible center of the drawing area.
 
-**Draw16.FIT_HORIZONTAL**
+**Draw16.FIT_HORIZONTAL**  
 FIT_HORIZONTAL is the same as FIT_VERTICAL using the width of the screen instead of height.
 
 ### Advanced: Best practice for a fully covered screen
