@@ -22,7 +22,7 @@ To get started quickly select a demo and edit it to your needs. Playing with fun
 
 The library needs to be loaded inside of the ```<body>``` tag:
 
-    <script type="text/javascript" src="../lib/Draw16.js"></script>
+    <script src="../lib/Draw16.js"></script>
 
 Init functions set up everything we need:
 
@@ -181,6 +181,27 @@ The default setting often leads to black bars on the screen borders. There is no
 - Mark this always visible area
 
 This works only for landscape screens and messes up when a smartphone rotates. Show a warning if the phone is in portrait mode.
+
+## No fullscreen, mixed with HTML
+
+You can mix Draw16 with HTML easily. Do not call the installFullscreen function. Add a canvas __above__ the script tag.
+
+	<h1>HTML Test</h1>
+	
+	<canvas id="draw16Canvas" />
+	<script src="PATH-TO/Draw16.js"></script>
+
+The id must be `draw16Canvas`. You can use normal HTML and CSS around it. You need to force a pixelated rendering in your CSS, if you want a pixelated look.
+
+	#draw16Canvas {
+		image-rendering: optimizeSpeed;
+		image-rendering: -moz-crisp-edges;
+		image-rendering: -o-crisp-edges;
+		image-rendering: -webkit-optimize-contrast;
+		image-rendering: pixelated;
+		image-rendering: optimize-contrast;
+		-ms-interpolation-mode: nearest-neighbor;
+	}
 
 ## Parameters
 
