@@ -51,11 +51,11 @@ When your sprite uses only full or no transparency, Draw16 still performs very w
 
 ![](docimg/trans50.png "")  
 **50% transparency - okay**  
-When a pixel has 50% transparency (alpha 127/128) set it will be processed faster, but not super fast.
+When a pixel has 50% transparency set (alpha 127/128) it will be processed faster, but not super fast.
 
 ![](docimg/trans25.png "")  
 **25% or 75% transparency - still okay**  
-When a pixel has 25% or 75% transparency (alpha 63/64, 191/192) set it will be processed faster than fine transparency.
+When a pixel has 25% or 75% transparency set (alpha 63/64, 191/192) it will be processed faster than fine transparency.
 
 ![](docimg/transfree.png "")  
 **Fine transparency - slow**  
@@ -126,7 +126,7 @@ Use PNG files as images for best results.
 
 **Draw16.drawText8**(texture, font, color, text, x, y) - draw text at x, y using a texture, font and color  
 There can be more than one font in a texture. The default value for font is 0 and the default for bold text is 1.
-All ASCII characters are supported. Special characters can be drawn using ~ right before the character. Edit font.png to add 
+All ASCII characters are supported. Special characters can be drawn using ~ right before the character. Edit font.png to add more special characters.
 
 This part is under construction. Transparency, 16px height and monospace fonts are not available yet.
 
@@ -137,10 +137,57 @@ This part is under construction. Transparency, 16px height and monospace fonts a
 **Draw16.loadTexture**(image) - Load an already loaded image as texture, return its id  
 **Draw16.loadTextureAsync**(name, src, cb) - Load an image from src as texture, name it and call cb as callback
 
+## Fullscreen mode
+
+If you do not plan to use HTML components alongside your drawing area, you should run Draw16 in fullscreen mode:
+
+	Draw16.installFullscreen();
+
+The drawing area will be resized to the window or screen resolution. There are multiple modes you can use. Just change the fitMode variable.
+
+	Draw16.fitMode = Draw16.FIT_CONTAIN;
+
+### Fit mode overview
+
+![Fit mode overview](docimg/Draw16.fitMode_overview.png "Fit mode overview")  
+
+**Draw16.FIT_CONTAIN**
+Default setting, best for most games.
+Show everything. This leaves black bars on the side of the screen, if the screen ratio does not match.
+
+**Draw16.FIT_COVER**
+Zoom in until the screen is fully covered. Some content will be hidden on the side of the screen, if the screen ratio does not match.
+Hint: Use 16:9 screen ratio for good results on modern devices. Keep hidden content in mind. Consider using FIT_VERTICAL for landscape view or FIT_HORIZONTAL for portrait view.
+
+**Draw16.FIT_STRETCH**
+Stretch the drawing area to the screen.
+Hint: Use 16:9 screen ratio for good results on modern devices.
+
+**Draw16.FIT_VERTICAL**
+Zoom in until the screen fits vertical. Use this mode if you need to support multiple aspect ratios. There will be hidden content on the left or right side of the screen. 
+Hint: Use the maximum screen ratio that you want to support. Content on the left or right side will reach over the screen and will be hidden. Place your game content in the always visible center of the drawing area.
+
+**Draw16.FIT_HORIZONTAL**
+FIT_HORIZONTAL is the same as FIT_VERTICAL using the width of the screen instead of height.
+
+### Advanced: Best practice for a fully covered screen
+
+The default setting often leads to black bars on the screen borders. There is no way this section can match every possible game or scenario, but this is a good start:
+
+- Use FIT_VERTICAL
+- Lock the app in landscape mode. Android, iOS and Cordova (Phonegap) have settings to do so.
+- Target an extreme screen ratio like 2:1 (or 19.5:9 for iPhone X)
+- Place important content inside of an imaginary smaller border (16:9 or 4:3)
+- Mark this always visible area
+
+This works only for landscape screens and messes up when a smartphone rotates. Show a warning if the phone is in portrait mode.
+
 ## Parameters
 
-**Draw16.ready** - read only, true if Draw16 is ready to use  
-**Draw16.fullscreen** - read only, true if Draw16 is installed in fullscreen mode
+**Draw16.ready** - read only, true if Draw16 is ready to use
+
+**Draw16.fullscreen** - read only, true if Draw16 is installed in fullscreen mode  
+**Draw16.fitMode** - manage the aspect ratio and scaling (see Fullscreen)
 
 **Draw16.width** - read only, width of the screen resolution in pixel  
 **Draw16.height** - read only, height of the screen resolution in pixel

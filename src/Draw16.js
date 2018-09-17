@@ -1,5 +1,7 @@
 class Draw16 { }
 
+Draw16.canvas = null;
+
 Draw16.texture = {};
 Draw16.ready = false;
 Draw16.step = 0;
@@ -7,6 +9,14 @@ Draw16.step = 0;
 Draw16.fullscreen = false;
 Draw16.width = 0;
 Draw16.height = 0;
+
+Draw16.fitMode = 0;
+Draw16._fitMode = -1;
+Draw16.FIT_CONTAIN = 0;
+Draw16.FIT_COVER = 1;
+Draw16.FIT_STRETCH = 2;
+Draw16.FIT_VERTICAL = 3;
+Draw16.FIT_HORIZONTAL = 4;
 
 Draw16.load = 0;
 Draw16.fps = 30;
@@ -36,9 +46,9 @@ Draw16.init = function(width, height) {
 	Draw16.width = width;
 	Draw16.height = height;
 
-	var canvas = document.getElementById('draw16Canvas');
+	Draw16.canvas = document.getElementById('draw16Canvas');
 
-	canvas.addEventListener("webglcontextlost", function(e) {
+	Draw16.canvas.addEventListener("webglcontextlost", function(e) {
 		window.location.href = window.location.href;
 		e.preventDefault();
 	}, false);
@@ -72,7 +82,7 @@ Draw16.installFullscreen = function() {
 	document.addEventListener('mouseup', function (event) { event.preventDefault(); }, false);
 	document.addEventListener('contextmenu', function (event) { event.preventDefault(); }, false);
 
-	var canvas = document.getElementById('draw16Canvas');
+	var canvas = Draw16.canvas;
 
 	canvas.style.position = 'fixed';
 	canvas.style.left = 'calc(50% - '+Math.floor(Draw16.width/2)+'px)';
@@ -86,6 +96,41 @@ Draw16.installFullscreen = function() {
 	canvas.style.imageRendering = 'pixelated';
 	canvas.style.imageRendering = 'optimize-contrast';
 	canvas.style.msInterpolationMode = 'nearest-neighbor'; // you found the special snowflake
+
+
+}
+
+Draw16._updateCanvasSize = function() {
+
+	if (!Draw16.fullscreen)
+		return;
+
+	var canvas = Draw16.canvas;
+
+	if (Draw16.fitMode == Draw16.FIT_VERTICAL)
+		canvas.style.transform = 'scale('+(window.innerHeight / Draw16.height)+')';
+	
+	else if (Draw16.fitMode == Draw16.FIT_HORIZONTAL)
+		canvas.style.transform = 'scale('+(window.innerWidth / Draw16.width)+')';
+
+	else if (Draw16.fitMode == Draw16.FIT_STRETCH)
+		canvas.style.transform = 'scale('+(window.innerWidth / Draw16.width)+', '+(window.innerHeight / Draw16.height)+')';
+
+	else if (
+		Draw16.fitMode == Draw16.FIT_CONTAIN
+		|| Draw16.fitMode == Draw16.FIT_COVER
+	) {
+		var wr = window.innerWidth / window.innerHeight;
+		var cr = Draw16.width / Draw16.height;
+
+		if (
+			(Draw16.fitMode == Draw16.FIT_CONTAIN && wr > cr)
+			|| (Draw16.fitMode == Draw16.FIT_COVER && wr < cr)
+		)
+			canvas.style.transform = 'scale('+(window.innerHeight / Draw16.height)+')';
+		else
+			canvas.style.transform = 'scale('+(window.innerWidth / Draw16.width)+')';
+	}
 
 }
 
@@ -169,6 +214,12 @@ Draw16.onStepWrapper = function() {
 			canvas.style.cursor = Draw16.mouseHide ? 'none' : 'auto';
 		}
 
+		if (Draw16.fitMode != Draw16._fitMode) {
+			Draw16._fitMode = Draw16.fitMode;
+
+			Draw16._updateCanvasSize();
+		}
+
 		Draw16.step++;
 	}
 
@@ -200,3 +251,7 @@ document.addEventListener('mousemove', function(event) {
 		Draw16.mouseY = Math.floor(y);
 	}
 }, false);
+
+window.addEventListener('resize', function() {
+	Draw16._fitMode = -1;
+});
