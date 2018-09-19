@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../lib/Draw16.js"></script>
+		<script>
+
+Draw16.fps = 60;
+Draw16.init(256, 240);
+Draw16.installFullscreen();
+
+Draw16.loadTextureAsync('font', 'ressources/font.png');
+Draw16.loadTextureAsync('pearl', 'ressources/pearl.png');
+
+var down = false;
+var mode = 0;
+var objectList = [];
+
+var score = [];
+var log;
+
+var running = false;
+var done = false;
+
+log = "== Draw16 Benchmark ==\n";
+log += "\n";
+log += "Press SPACE to start\n";
+
+function rand(a, b) {
+	if (typeof b == 'undefined') {
+		b = a;
+		a = 0;
+	}
+	if (a > b) {
+		var c = b;
+		b = a;
+		a = c;
+	}
+	if (b-a < 1000) {
+		// better random number
+		return a + (Math.round(Math.random()*100000) % (b-a+1));
+	}
+	return a + Math.floor(Math.random()*(b-a+1));
+}
+
+function newObjects(n) {
+	for (var i=0; i<n; i++) {
+		objectList.push({
+			x: rand(Draw16.width),
+			y: -16,
+			type: rand(0, 4),
+			xOffset: rand(-100, 100)/100,
+			yOffset: rand(-100, 100)/100
+		});
+	}
+}
+
+var obj;
+Draw16.onStep = function() {
+
+	Draw16.drawRectangleFill(0x808080, 0, 0, Draw16.width, Draw16.height);
+
+	for (var i=0; i<objectList.length; i++) {
+		obj = objectList[i];
+		obj.x += obj.xOffset;
+		obj.y += obj.yOffset;
+		if (obj.x > Draw16.width)
+			obj.x = -16;
+		else if (obj.x < -16)
+			obj.x = Draw16.width;
+		if (obj.y > Draw16.height)
+			obj.y = -16;
+		else if (obj.y < -16)
+			obj.y = Draw16.height;
+
+		Draw16.drawArea(Draw16.texture.pearl, obj.x, obj.y, 1, 1, obj.type, mode);
+	}
+
+	// Log
+	var lines = log.split("\n");
+	var height = lines.length*8;
+	if (height < 3*8)
+		height = 3*8;
+	Draw16.drawRectangleFill(0x000000, 10, 10, Draw16.width-20, height+20);
+	for (var i=0; i<lines.length; i++) {
+		Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, lines[i], 20, 20+i*8);
+	}
+
+	// Frames per second and load
+	if (running) {
+		Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'OBJ '+objectList.length, 192, 20);
+		var color = 0xffffff;
+		if (Draw16.fpsLast <= 55)
+			color = 0x0000ff;
+		Draw16.drawText8(Draw16.texture.font, 0, color, 'FPS '+Draw16.fpsLast+'/'+Draw16.fps, 192, 28);
+		Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'LOAD '+Draw16.load+'%', 192, 36);
+	}
+}
+
+
+document.addEventListener('keydown', function(e) {
+	if (!running && e.keyCode == 32) {
+
+		running = true;
+		log = '';
+
+		log += "Test 1: No transparency\n";
+
+		window.setInterval(function() {
+			if (mode > 4) {
+				return;
+			}
+
+			if (down) {
+				if (Draw16.fpsLast > 55) {
+					score.push(objectList.length);
+
+					log += "\n";
+					log += "Score: "+objectList.length+"\n";
+
+					objectList = [];
+					mode++;
+					down = false;
+
+					if (mode == 1) {
+						log += "\n";
+						log += "Test 2: Full transparency\n";
+					}
+					if (mode == 2) {
+						log += "\n";
+						log += "Test 3: Half transparency\n";
+					}
+					if (mode == 3) {
+						log += "\n";
+						log += "Test 4: Quad transparency\n";
+					}
+					if (mode == 4) {
+						log += "\n";
+						log += "Test 5: Fine transparency\n";
+					}
+					if (mode == 5) {
+						log += "\nDONE!";
+						done = true;
+					}
+
+				}
+				else {
+					objectList.splice(0, 100);
+					log += "-";
+				}
+				return;
+			}
+
+			if (Draw16.fpsLast > 55) {
+				newObjects(1000);
+				log += "+";
+			}
+			else {
+				down = true;
+			}
+		}, 2000);
+
+	}
+});
+
+		</script>
+	</body>
+</html>

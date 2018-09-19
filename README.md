@@ -10,7 +10,9 @@ Draw16 draws pixels, text, lines, rectangles, ellipses and chips (16x16 pixel te
 
 ## Getting started
 
-### Download or clone the git repository and run the demos
+### Get the code
+
+Download or clone the git repository and run the demos:
 
     git clone https://github.com/philipp-schwarz/draw16.git
 
@@ -18,7 +20,7 @@ Use Firefox for development. Or Chrome with the parameter --allow-file-access-fr
 
 To get started quickly select a demo and edit it to your needs. Playing with functions and parameters might be easier than to read the whole documentation.
 
-### The main structure explained
+### The main structure
 
 The library needs to be loaded inside of the ```<body>``` tag:
 
@@ -61,7 +63,9 @@ When a pixel has 25% or 75% transparency set (alpha 63/64, 191/192) it will be p
 **Fine transparency - slow**  
 Fine transparency between 0% and 100% is slow. Keep that in mind. Use it when you really need it. Try to avoid it.
 
-## Colors
+## Function overview
+
+### Colors
 
 Colors are written as hex values. Unlike many other formats Draw16 uses BGR (blue, green, red) instead of RGB, because BGR is processed faster.
 
@@ -77,7 +81,7 @@ If you prefer RGB you can use the color function.
 	var green = Draw16.color(0, 255, 0);
 	var blue  = Draw16.color(0, 0, 255);
 
-## Color drawing functions
+### Color drawing functions
 
 Colors can be used to draw pixels and basic shapes, filled and unfilled.
 
@@ -99,7 +103,7 @@ Colors can be used to draw pixels and basic shapes, filled and unfilled.
 ![Draw16.drawRectangleFill](docimg/Draw16.drawRectangleFill.png "drawRectangleFill")  
 **Draw16.drawRectangleFill**(color, x, y, width, height) - fill a colored rectangle at x, y with width x height
 
-## Textures
+### Textures
 
 Textures are basicly images. The width and height must be a multiple of 16. Every texture consists of multiple 16x16 pixel chips. You can either draw the whole texture or selected chips of the texture.
 
@@ -113,7 +117,7 @@ The loaded texture will be available as variable
 
 Use PNG files as images for best results.
 
-## Texture drawing functions
+### Texture drawing functions
 
 **Draw16.drawChip**(texture, chipX, chipY, targetX, targetY) - draw a single 16x16 pixel chip from texture chipX, chipY at target x,y
 
@@ -122,20 +126,67 @@ Use PNG files as images for best results.
 **Draw16.drawArea**(texture, targetX, targetY, chipWidth, chipHeight) - set the width and heights by chips (16px)  
 **Draw16.drawArea**(texture, targetX, targetY, chipWidth, chipHeight, textureChipX, textureChipY, textureWidth, textureHeight) - select an area from the texture to repeat
 
-## Text drawing functions
+### Text
+
+Draw16 supports bitmap fonts. See font.png from the ressources folder.
+
+![Font preview](docimg/font_preview.png "Font preview")  
+*(Font preview, not the actual file)*
+
+The example font supports german special characters: äöüÄÖÜß  
+There are also symbols for rupees, hearts, arrows and gamepad buttons. Edit it and add characters and symbols to your needs.
+
+The font must be loaded as a regular texture. There can be more than one font in a texture. The first font should be a regular font and the second should be bold.
+
+### Text drawing functions
 
 **Draw16.drawText8**(texture, font, color, text, x, y) - draw text at x, y using a texture, font and color  
-There can be more than one font in a texture. The default value for font is 0 and the default for bold text is 1.
-All ASCII characters are supported. Special characters can be drawn using ~ right before the character. Edit font.png to add more special characters.
+The default value for font is 0 and the default for bold text is 1. Special characters can be drawn using ~ right before the character.
 
 This part is under construction. Transparency, 16px height and monospace fonts are not available yet.
 
-## Setup functions
+### Setup functions
 
 **Draw16.init**(width, height) - Initialize Draw16 with width x height as screen resolution  
 **Draw16.installFullscreen**() - Set the drawing area to fullscreen  
 **Draw16.loadTexture**(image) - Load an already loaded image as texture, return its id  
 **Draw16.loadTextureAsync**(name, src, cb) - Load an image from src as texture, name it and call cb as callback
+
+### Parameters
+
+**Draw16.ready** - read only, true if Draw16 is ready to use
+
+**Draw16.fullscreen** - read only, true if Draw16 is installed in fullscreen mode  
+**Draw16.fitMode** - manage the aspect ratio and scaling (see Fullscreen)
+
+**Draw16.width** - read only, width of the screen resolution in pixel  
+**Draw16.height** - read only, height of the screen resolution in pixel
+
+**Draw16.step** - read only, number of the frames rendered  
+**Draw16.fps** - number of the frames per second  
+**Draw16.fpsLast** - read only, frames rendered in the passed second
+
+**Draw16.mouseHide** - set to true if you want to hide the cursor over the rendering area  
+**Draw16.mouseX** - read only, left position of the mouse cursor  
+**Draw16.mouseY** - read only, top position of the mouse cursor
+
+**Draw16.texture** - read only, list of all loaded textures
+
+## RPG Maker 2000 resources
+
+Welcome RM2K veterans! This is what you need to know in order to use RPG Maker ressources with Draw16.
+
+Facesets, panoramas, battlegrounds, titlescreens and all other graphics that fit into a 16 pixel grid are supported out of the box. Sadly, not all resources can be used yet. But with a little extra work you can use a lot of them.
+
+**Chipsets**  
+![RPG Maker Chipset](docimg/rm2k_chipset.png "RPG Maker Chipset")  
+Replace the background color with 100% transparency and you can use all chips from the set.
+Animations are not supported, but you can show and hide chips time based (see Draw16.step) which ends in the same result.
+Ground or water patterns are not supported.
+
+**Character sets**  
+![RPG Maker Charset](docimg/rm2k_charset.png "RPG Maker Charset")  
+RPG Maker uses 24x32 pixel per character, but Draw16 only supports 16 pixel chips. Extend the image to 32x32 pixel per character animation frame, remove the background color and you are good to go.
 
 ## Fullscreen mode
 
@@ -178,11 +229,12 @@ The default setting often leads to black bars on the screen borders. There is no
 - Lock the app in landscape mode. Android, iOS and Cordova (Phonegap) have settings to do so.
 - Target an extreme screen ratio like 2:1 (or 19.5:9 for iPhone X)
 - Place important content inside of an imaginary smaller border (16:9 or 4:3)
-- Mark this always visible area
+- Mark this always visible area for development
+- Consider using a fallback code if the visible area would be hidden
 
-This works only for landscape screens and messes up when a smartphone rotates. Show a warning if the phone is in portrait mode.
+This works only for landscape screens and messes up when a smartphone rotates. Show a "rotate phone" info text if the phone is in portrait mode.
 
-## No fullscreen, mixed with HTML
+## HTML mix mode
 
 You can mix Draw16 with HTML easily. Do not call the installFullscreen function. Add a canvas __above__ the script tag.
 
@@ -202,42 +254,6 @@ The id must be `draw16Canvas`. You can use normal HTML and CSS around it. You ne
 		image-rendering: optimize-contrast;
 		-ms-interpolation-mode: nearest-neighbor;
 	}
-
-## Parameters
-
-**Draw16.ready** - read only, true if Draw16 is ready to use
-
-**Draw16.fullscreen** - read only, true if Draw16 is installed in fullscreen mode  
-**Draw16.fitMode** - manage the aspect ratio and scaling (see Fullscreen)
-
-**Draw16.width** - read only, width of the screen resolution in pixel  
-**Draw16.height** - read only, height of the screen resolution in pixel
-
-**Draw16.step** - read only, number of the frames rendered  
-**Draw16.fps** - number of the frames per second  
-**Draw16.fpsLast** - read only, frames rendered in the passed second
-
-**Draw16.mouseHide** - set to true if you want to hide the cursor over the rendering area  
-**Draw16.mouseX** - read only, left position of the mouse cursor  
-**Draw16.mouseY** - read only, top position of the mouse cursor
-
-**Draw16.texture** - read only, list of all loaded textures
-
-## RPG Maker 2000 resources
-
-Welcome RM2K veterans! This is what you need to know in order to use RPG Maker ressources with Draw16.
-
-Facesets, panoramas, battlegrounds, titlescreens and all other graphics that fit into a 16 pixel grid are supported out of the box. Sadly, not all resources can be used yet. But with a little extra work you can use a lot of them.
-
-**Chipsets**  
-![RPG Maker Chipset](docimg/rm2k_chipset.png "RPG Maker Chipset")  
-Replace the background color with 100% transparency and you can use all chips from the set.
-Animations are not supported, but you can show and hide chips time based (see Draw16.step) which ends in the same result.
-Ground or water patterns are not supported.
-
-**Character sets**  
-![RPG Maker Charset](docimg/rm2k_charset.png "RPG Maker Charset")  
-RPG Maker uses 24x32 pixel per character, but Draw16 only supports 16 pixel chips. Extend the image to 32x32 pixel per character animation frame, remove the background color and you are good to go.
 
 ## Limits
 
