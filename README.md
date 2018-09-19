@@ -8,6 +8,29 @@ It is free, fast, simple and pixel perfect. Many modern game engines lack the ab
 
 Draw16 draws pixels, text, lines, rectangles, ellipses and chips (16x16 pixel textures). It supports full transparency for shadows, weather or water effects.
 
+## Contents
+
+[Draw16](#draw16)
+- [Why should I use it?](#why-should-i-use-it)
+- [Getting started](#getting-started)
+    - [Get the code](#get-the-code)
+    - [The main structure](#the-main-structure)
+- [Performance](#performance)
+- [Function overview](#function-overview)
+    - [Colors](#colors)
+    - [Color drawing functions](#color-drawing-functions)
+    - [Textures](#textures)
+    - [Texture drawing functions](#texture-drawing-functions)
+    - [Text](#text)
+    - [Text drawing functions](#text-drawing-functions)
+    - [Setup functions](#setup-functions)
+    - [Parameters](#parameters)
+- [Fullscreen mode](#fullscreen-mode)
+- [HTML mix mode](#html-mix-mode)
+- [RPG Maker resources](#rpg-maker-resources)
+- [Limits](#limits)
+- [Feedback](#feedback)
+
 ## Getting started
 
 ### Get the code
@@ -172,22 +195,6 @@ This part is under construction. Transparency, 16px height and monospace fonts a
 
 **Draw16.texture** - read only, list of all loaded textures
 
-## RPG Maker 2000 resources
-
-Welcome RM2K veterans! This is what you need to know in order to use RPG Maker ressources with Draw16.
-
-Facesets, panoramas, battlegrounds, titlescreens and all other graphics that fit into a 16 pixel grid are supported out of the box. Sadly, not all resources can be used yet. But with a little extra work you can use a lot of them.
-
-**Chipsets**  
-![RPG Maker Chipset](docimg/rm2k_chipset.png "RPG Maker Chipset")  
-Replace the background color with 100% transparency and you can use all chips from the set.
-Animations are not supported, but you can show and hide chips time based (see Draw16.step) which ends in the same result.
-Ground or water patterns are not supported.
-
-**Character sets**  
-![RPG Maker Charset](docimg/rm2k_charset.png "RPG Maker Charset")  
-RPG Maker uses 24x32 pixel per character, but Draw16 only supports 16 pixel chips. Extend the image to 32x32 pixel per character animation frame, remove the background color and you are good to go.
-
 ## Fullscreen mode
 
 If you do not plan to use HTML components alongside your drawing area, you should run Draw16 in fullscreen mode:
@@ -254,6 +261,22 @@ The id must be `draw16Canvas`. You can use normal HTML and CSS around it. You ne
 		image-rendering: optimize-contrast;
 		-ms-interpolation-mode: nearest-neighbor;
 	}
+
+## RPG Maker resources
+
+Welcome RM2K veterans! This is what you need to know in order to use RPG Maker ressources with Draw16.
+
+Facesets, panoramas, battlegrounds, titlescreens and all other graphics that fit into a 16 pixel grid are supported out of the box. Sadly, not all resources can be used yet. But with a little extra work you can use a lot of them.
+
+**Chipsets**  
+![RPG Maker Chipset](docimg/rm2k_chipset.png "RPG Maker Chipset")  
+Replace the background color with 100% transparency and you can use all chips from the set.
+Animations are not supported, but you can show and hide chips time based (see Draw16.step) which ends in the same result.
+Ground or water patterns are not supported.
+
+**Character sets**  
+![RPG Maker Charset](docimg/rm2k_charset.png "RPG Maker Charset")  
+RPG Maker uses 24x32 pixel per character, but Draw16 only supports 16 pixel chips. Extend the image to 32x32 pixel per character animation frame, remove the background color and you are good to go.
 
 ## Limits
 
