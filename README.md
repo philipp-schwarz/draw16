@@ -108,42 +108,39 @@ You may want to not use the whole 24 bit color spectrum, because old games had v
 
 **Monochrome color palette**
 
-Black and white  
-![#000000](https://placehold.it/15/000000/000000?text=+) `#000000` Black  
-![#ffffff](https://placehold.it/15/eeeeee/eeeeee?text=+) `#ffffff` White
-
-Green on green  
-| ![#004400](https://placehold.it/15/004400/004400?text=+) `#004400` Dark Green  
-| ![#00ff00](https://placehold.it/15/00ff00/00ff00?text=+) `#00ff00` Light Green
+| Black and White | Green on Green |
+| --- | --- |
+| ![#000000](https://placehold.it/15/000000/000000?text=+) `0x000000` Black | ![#004400](https://placehold.it/15/004400/004400?text=+) `0x004400` Dark Green |
+| ![#ffffff](https://placehold.it/15/eeeeee/eeeeee?text=+) `0xffffff` White | ![#00ff00](https://placehold.it/15/00ff00/00ff00?text=+) `0x00ff00` Light Green |
 
 **4 Color palette**
 
 Many old games have a mode that use 4 colors  
-![#000000](https://placehold.it/15/000000/000000?text=+) `#000000` Black  
-![#ffffff](https://placehold.it/15/ffffff/ffffff?text=+) `#ffffff` White  
-![#54fcfc](https://placehold.it/15/54fcfc/54fcfc?text=+) `#fcfc54` Light Cyan  
-![#fc54fc](https://placehold.it/15/fc54fc/fc54fc?text=+) `#fc54fc` Light Magenta  
+![#000000](https://placehold.it/15/000000/000000?text=+) `0x000000` Black  
+![#ffffff](https://placehold.it/15/ffffff/ffffff?text=+) `0xffffff` White  
+![#54fcfc](https://placehold.it/15/54fcfc/54fcfc?text=+) `0xfcfc54` Light Cyan  
+![#fc54fc](https://placehold.it/15/fc54fc/fc54fc?text=+) `0xfc54fc` Light Magenta  
 
 **16 Colors**
 
 The classic. There are differences between BIOS, Windows and other palettes. Here is the BIOS palette.
 
-![#000000](https://placehold.it/15/000000/000000?text=+) `#000000` Black  
-![#0000AA](https://placehold.it/15/0000AA/0000AA?text=+) `#AA0000` Blue  
-![#00AA00](https://placehold.it/15/00AA00/00AA00?text=+) `#00AA00` Green  
-![#00AAAA](https://placehold.it/15/00AAAA/00AAAA?text=+) `#AAAA00` Cyan  
-![#AA0000](https://placehold.it/15/AA0000/AA0000?text=+) `#0000AA` Red  
-![#AA00AA](https://placehold.it/15/AA00AA/AA00AA?text=+) `#AA00AA` Magenta  
-![#AA5500](https://placehold.it/15/AA5500/AA5500?text=+) `#0055AA` Brown  
-![#AAAAAA](https://placehold.it/15/AAAAAA/AAAAAA?text=+) `#AAAAAA` Light Gray  
-![#555555](https://placehold.it/15/555555/555555?text=+) `#555555` Dark Gray  
-![#5555FF](https://placehold.it/15/5555FF/5555FF?text=+) `#FF5555` Light Blue  
-![#55FF55](https://placehold.it/15/55FF55/55FF55?text=+) `#55FF55` Light Green  
-![#55FFFF](https://placehold.it/15/55FFFF/55FFFF?text=+) `#FFFF55` Light Cyan  
-![#FF5555](https://placehold.it/15/FF5555/FF5555?text=+) `#5555FF` Light Red  
-![#FF55FF](https://placehold.it/15/FF55FF/FF55FF?text=+) `#FF55FF` Light Magenta  
-![#FFFF55](https://placehold.it/15/FFFF55/FFFF55?text=+) `#55FFFF` Yellow  
-![#FFFFFF](https://placehold.it/15/FFFFFF/FFFFFF?text=+) `#FFFFFF` White  
+![#000000](https://placehold.it/15/000000/000000?text=+) `0x000000` Black  
+![#0000AA](https://placehold.it/15/0000AA/0000AA?text=+) `0xAA0000` Blue  
+![#00AA00](https://placehold.it/15/00AA00/00AA00?text=+) `0x00AA00` Green  
+![#00AAAA](https://placehold.it/15/00AAAA/00AAAA?text=+) `0xAAAA00` Cyan  
+![#AA0000](https://placehold.it/15/AA0000/AA0000?text=+) `0x0000AA` Red  
+![#AA00AA](https://placehold.it/15/AA00AA/AA00AA?text=+) `0xAA00AA` Magenta  
+![#AA5500](https://placehold.it/15/AA5500/AA5500?text=+) `0x0055AA` Brown  
+![#AAAAAA](https://placehold.it/15/AAAAAA/AAAAAA?text=+) `0xAAAAAA` Light Gray  
+![#555555](https://placehold.it/15/555555/555555?text=+) `0x555555` Dark Gray  
+![#5555FF](https://placehold.it/15/5555FF/5555FF?text=+) `0xFF5555` Light Blue  
+![#55FF55](https://placehold.it/15/55FF55/55FF55?text=+) `0x55FF55` Light Green  
+![#55FFFF](https://placehold.it/15/55FFFF/55FFFF?text=+) `0xFFFF55` Light Cyan  
+![#FF5555](https://placehold.it/15/FF5555/FF5555?text=+) `0x5555FF` Light Red  
+![#FF55FF](https://placehold.it/15/FF55FF/FF55FF?text=+) `0xFF55FF` Light Magenta  
+![#FFFF55](https://placehold.it/15/FFFF55/FFFF55?text=+) `0x55FFFF` Yellow  
+![#FFFFFF](https://placehold.it/15/FFFFFF/FFFFFF?text=+) `0xFFFFFF` White  
 
 ### Color drawing functions
 
