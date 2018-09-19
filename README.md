@@ -104,27 +104,17 @@ If you prefer RGB you can use the color function.
 
 #### Limited color sets
 
-You may want to not use the whole 24 bit color spectrum, because old games had very limited ressources. The first games ran on monochrome monitors with only two colors, often white (or green) on black. Sometimes the green color mixed with black so the result was more like light green on dark green.
-
-**Monochrome color palette**
+You may want to not use the whole 24 bit color spectrum, because old games had very limited ressources. The first games ran on monochrome monitors with only two colors, often white on black or green.
 
 | Black and White | Green on Green |
 | --- | --- |
 | ![#000000](https://placehold.it/15/000000/000000?text=+) `0x000000` Black | ![#004400](https://placehold.it/15/004400/004400?text=+) `0x004400` Dark Green |
 | ![#ffffff](https://placehold.it/15/ffffff/ffffff?text=+) `0xffffff` White | ![#00ff00](https://placehold.it/15/00ff00/00ff00?text=+) `0x00ff00` Light Green |
 
-**4 color palette**
-
-Many old games have a mode that use 4 colors  
-
 | 4 colors |  |
 | --- | --- |
 | ![#000000](https://placehold.it/15/000000/000000?text=+) `0x000000` Black | ![#54fcfc](https://placehold.it/15/54fcfc/54fcfc?text=+) `0xfcfc54` Light Cyan |
 | ![#ffffff](https://placehold.it/15/ffffff/ffffff?text=+) `0xffffff` White | ![#fc54fc](https://placehold.it/15/fc54fc/fc54fc?text=+) `0xfc54fc` Light Magenta |
-
-**16 colors**
-
-The classic. There are differences between BIOS, Windows and other palettes. Here is the BIOS palette.
 
 | 16 colors |  |
 | --- | --- |
