@@ -102,6 +102,19 @@ If you prefer RGB you can use the color function.
 	var green = Draw16.color(0, 255, 0);
 	var blue  = Draw16.color(0, 0, 255);
 
+You may want to not use the whole 24 bit color spectrum, because old games had very limited ressources. The first games ran on monochrome monitors with only two colors, often white (or green) on black. Sometimes the green color mixed with black so the result was more like light green on dark green.
+
+**Monochrome color palette**
+
+Black and white
+| ![#000000](https://placehold.it/15/000000/000000?text=+) | `#000000` | Black |
+| ![#ffffff](https://placehold.it/15/ffffff/ffffff?text=+) | `#ffffff` | White |
+
+Green on green
+| ![#004400](https://placehold.it/15/004400/004400?text=+) | `#004400` | Dark green |
+| ![#00ff00](https://placehold.it/15/00ff00/00ff00?text=+) | `#00ff00` | Light green |
+
+
 ### Color drawing functions
 
 Colors can be used to draw pixels and basic shapes, filled and unfilled.
@@ -152,7 +165,7 @@ Use PNG files as images for best results.
 Draw16 supports bitmap fonts. See font.png from the ressources folder.
 
 ![Font preview](docimg/font_preview.png "Font preview")  
-*(Font preview, not the actual file)*
+*(Font preview, not the actual font.png file)*
 
 The example font supports german special characters: äöüÄÖÜß  
 There are also symbols for rupees, hearts, arrows and gamepad buttons. Edit it and add characters and symbols to your needs.
@@ -237,7 +250,7 @@ The default setting often leads to black bars on the screen borders. There is no
 - Mark this always visible area for development
 - Consider using a fallback code if the visible area would be hidden
 
-This works only for landscape screens and messes up when a smartphone rotates. Show a "rotate phone" info text if the phone is in portrait mode.
+This works only for landscape screens and messes up when a smartphone rotates. Show a "rotate phone" info text if the device is in portrait mode and locking is not set.
 
 ## HTML mix mode
 
