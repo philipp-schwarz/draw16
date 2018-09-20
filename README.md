@@ -193,7 +193,7 @@ Important: The unit of the target position (x, y) is pixel while every other par
 
 **Result**
 
-![Draw16.drawArea](docimg/Draw16.drawArea.png "Draw16.drawArea")  
+![Draw16.drawArea](docimg/Draw16.drawArea2.png "Draw16.drawArea")  
 
 
 **Draw16.drawChip**(texture, sourceX, sourceY, targetX, targetY) - draw a single 16x16 pixel chip from texture sourceX, sourceY to targetX, targetY.
