@@ -104,17 +104,7 @@ If you prefer RGB you can use the color function.
 
 #### Limited color sets
 
-You may want to not use the whole 24 bit color spectrum, because old games had very limited ressources. The first games ran on monochrome monitors with only two colors, often white on black or green.
-
-| Black and White | Green on Green |
-| --- | --- |
-| ![#000000](https://placehold.it/15/000000/000000?text=+) `0x000000` Black | ![#004400](https://placehold.it/15/004400/004400?text=+) `0x004400` Dark Green |
-| ![#ffffff](https://placehold.it/15/ffffff/ffffff?text=+) `0xffffff` White | ![#00ff00](https://placehold.it/15/00ff00/00ff00?text=+) `0x00ff00` Light Green |
-
-| 4 colors |  |
-| --- | --- |
-| ![#000000](https://placehold.it/15/000000/000000?text=+) `0x000000` Black | ![#54fcfc](https://placehold.it/15/54fcfc/54fcfc?text=+) `0xfcfc54` Light Cyan |
-| ![#ffffff](https://placehold.it/15/ffffff/ffffff?text=+) `0xffffff` White | ![#fc54fc](https://placehold.it/15/fc54fc/fc54fc?text=+) `0xfc54fc` Light Magenta |
+You may want to not use the whole 24 bit color spectrum, because old games had very limited ressources. The first games ran on monochrome monitors with only two colors, often white (or green) on black.
 
 | 16 colors |  |
 | --- | --- |
@@ -171,9 +161,7 @@ Use PNG files as images for best results.
 **Draw16.drawArea** - draw an area of 16x16 pixel chips, multiple calls  
 **Draw16.drawArea**(texture, targetX, targetY) - draw the whole texture  
 
-**Draw16.drawArea**(texture, targetX, targetY, targetWidth, targetHeight) - draw a part of the texture  
-**Draw16.drawArea**(texture, targetX, targetY, targetWidth, targetHeight, sourceX, sourceY) - select the position (x, y) from the texture to draw
-**Draw16.drawArea**(texture, targetX, targetY, targetWidth, targetHeight, sourceX, sourceY, sourceWidth, sourceHeight) - select an area (width, height) from the texture to draw
+**Draw16.drawArea**(texture, targetX, targetY, [targetWidth, targetHeight, sourceX, sourceY, sourceWidth, sourceHeight]) - draw a part of the texture
 
 The drawArea function looks complicated, but it is actually very simple.
 
@@ -199,6 +187,18 @@ Important: The unit of the target position (x, y) is pixel while every other par
 **Draw16.drawChip**(texture, sourceX, sourceY, targetX, targetY) - draw a single 16x16 pixel chip from texture sourceX, sourceY to targetX, targetY.
 
 You can use the drawArea function to draw a signle chip as well. This function is a little bit faster.
+
+**Example**
+
+	Draw16.drawChip(
+		Draw16.texture.chipset,  // texture
+		3, 1,                    // source / texture 
+		2, 2                     // target / drawing area
+	);
+
+**Result**
+
+![Draw16.drawChip](docimg/Draw16.drawChip.png "Draw16.drawChip")  
 
 ### Text
 
