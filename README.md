@@ -151,6 +151,9 @@ Colors can be used to draw pixels and basic shapes, filled and unfilled.
 
 ### Textures
 
+![Example texture](docimg/texture_preview.png "Example texture")  
+*(Example texture)*
+
 Textures are basicly images. The width and height must be a multiple of 16. Every texture consists of multiple 16x16 pixel chips. You can either draw the whole texture or selected chips of the texture.
 
 Load textures with the loadTextureAsync function
@@ -165,12 +168,35 @@ Use PNG files as images for best results.
 
 ### Texture drawing functions
 
-**Draw16.drawChip**(texture, chipX, chipY, targetX, targetY) - draw a single 16x16 pixel chip from texture chipX, chipY at target x,y
-
 **Draw16.drawArea** - draw an area of 16x16 pixel chips, multiple calls  
 **Draw16.drawArea**(texture, targetX, targetY) - draw the whole texture  
-**Draw16.drawArea**(texture, targetX, targetY, chipWidth, chipHeight) - set the width and heights by chips (16px)  
-**Draw16.drawArea**(texture, targetX, targetY, chipWidth, chipHeight, textureChipX, textureChipY, textureWidth, textureHeight) - select an area from the texture to repeat
+
+**Draw16.drawArea**(texture, targetX, targetY, targetWidth, targetHeight) - draw a part of the texture
+**Draw16.drawArea**(texture, targetX, targetY, targetWidth, targetHeight, sourceX, sourceY) - select the position (x, y) from the texture to draw
+**Draw16.drawArea**(texture, targetX, targetY, targetWidth, targetHeight, sourceX, sourceY, sourceWidth, sourceHeight) - select an area (width, height) from the texture to draw
+
+The drawArea function looks complicated, but it is actually very simple.
+
+- Texture: Which texture do you want to draw?
+- Target: Where do you want to draw it? x, y, width, height
+- Source: What part of the texture do you want to draw? x, y, width, height
+
+Important: The unit of the target position (x, y) is pixel while every other parameter is measured in chips (16 pixel).
+
+**Example**
+
+![Draw16.drawArea](docimg/Draw16.drawArea.png "Draw16.drawArea")  
+
+	Draw16.drawArea(
+		Draw16.texture.chipset,  // texture
+		0, 0, 6, 3,              // target / drawing area
+		0, 1, 1, 1               // source / texture 
+	);
+
+
+**Draw16.drawChip**(texture, chipX, chipY, targetX, targetY) - draw a single 16x16 pixel chip from texture chipX, chipY at target x,y
+
+You can use the drawArea function to draw a signle chip as well. This function is a little bit faster.
 
 ### Text
 
