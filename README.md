@@ -171,7 +171,7 @@ Use PNG files as images for best results.
 **Draw16.drawArea** - draw an area of 16x16 pixel chips, multiple calls  
 **Draw16.drawArea**(texture, targetX, targetY) - draw the whole texture  
 
-**Draw16.drawArea**(texture, targetX, targetY, targetWidth, targetHeight) - draw a part of the texture
+**Draw16.drawArea**(texture, targetX, targetY, targetWidth, targetHeight) - draw a part of the texture  
 **Draw16.drawArea**(texture, targetX, targetY, targetWidth, targetHeight, sourceX, sourceY) - select the position (x, y) from the texture to draw
 **Draw16.drawArea**(texture, targetX, targetY, targetWidth, targetHeight, sourceX, sourceY, sourceWidth, sourceHeight) - select an area (width, height) from the texture to draw
 
@@ -185,16 +185,18 @@ Important: The unit of the target position (x, y) is pixel while every other par
 
 **Example**
 
-![Draw16.drawArea](docimg/Draw16.drawArea.png "Draw16.drawArea")  
-
 	Draw16.drawArea(
 		Draw16.texture.chipset,  // texture
-		0, 0, 6, 3,              // target / drawing area
+		0, 0, 6, 4,              // target / drawing area
 		0, 1, 1, 1               // source / texture 
 	);
 
+**Result**
 
-**Draw16.drawChip**(texture, chipX, chipY, targetX, targetY) - draw a single 16x16 pixel chip from texture chipX, chipY at target x,y
+![Draw16.drawArea](docimg/Draw16.drawArea.png "Draw16.drawArea")  
+
+
+**Draw16.drawChip**(texture, sourceX, sourceY, targetX, targetY) - draw a single 16x16 pixel chip from texture sourceX, sourceY to targetX, targetY.
 
 You can use the drawArea function to draw a signle chip as well. This function is a little bit faster.
 
