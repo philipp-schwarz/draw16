@@ -12,6 +12,13 @@ It is free, fast, simple and pixel perfect. Many modern game engines lack the ab
 
 Draw16 draws pixels, text, lines, rectangles, ellipses and chips (16x16 pixel textures). It supports full transparency for shadows, weather or water effects.
 
+# How does it look?
+
+This is up to you. You can create games from monochrome vector graphics to 24 bit color sprites. Here are two examples:
+
+![Asteroids](docimg/sample_asteroids.png "Asteroids")  
+![Carl Box](docimg/sample_carl.png "Carl Box")  
+
 # Contents
 
 - [Getting started](#getting-started)
