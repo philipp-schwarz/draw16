@@ -1,14 +1,18 @@
 # Draw16
 
+![Size 420kb](https://img.shields.io/badge/size-420kb-brightgreen.svg "Size 420kb")
+![No dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg "No dependencies")
+![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg "MIT license")
+
 Draw16 is a fast graphic engine for retro games with very low screen resolution. It is made for games like from the **Super Nintendo** (Super Famicom) or **DOS** era that use a 16 pixel grid. Draw16 is based on JavaScript and WebGL. The core is written in C++ and SDL, translated with emscripten.
 
-## Why should I use it?
+# Why should I use it?
 
 It is free, fast, simple and pixel perfect. Many modern game engines lack the ability of pixel precise drawing that is needed for retro games. Finding workarounds in order to get these graphics often results in performance issues.
 
 Draw16 draws pixels, text, lines, rectangles, ellipses and chips (16x16 pixel textures). It supports full transparency for shadows, weather or water effects.
 
-## Contents
+# Contents
 
 - [Getting started](#getting-started)
     - [Get the code](#get-the-code)
@@ -29,9 +33,9 @@ Draw16 draws pixels, text, lines, rectangles, ellipses and chips (16x16 pixel te
 - [Limits](#limits)
 - [Feedback](#feedback)
 
-## Getting started
+# Getting started
 
-### Get the code
+## Get the code
 
 Download or clone the git repository and run the demos:
 
@@ -41,7 +45,7 @@ Use Firefox for development. Or Chrome with the parameter --allow-file-access-fr
 
 To get started quickly select a demo and edit it to your needs. Playing with functions and parameters might be easier than to read the whole documentation.
 
-### The main structure
+## The main structure
 
 The library needs to be loaded inside of the ```<body>``` tag:
 
@@ -60,7 +64,7 @@ A callback function is called on every redraw:
 
 See *template.html* for a complete example.
 
-## Performance
+# Performance
 
 If you use Draw16 wrong you will suffer with poor performance. There is no need to read the whole documentation, but you should read this. Always take care of the transparency in your chips / textures. This is key.
 
@@ -84,9 +88,9 @@ When a pixel has 25% or 75% transparency set (alpha 63/64, 191/192) it will be p
 **Fine transparency - slow**  
 Fine transparency between 0% and 100% is slow. Keep that in mind. Use it when you really need it. Try to avoid it.
 
-## Function overview
+# Function overview
 
-### Colors
+## Colors
 
 Colors are written as hex values. Unlike many other formats Draw16 uses BGR (blue, green, red) instead of RGB, because BGR is processed faster.
 
@@ -102,7 +106,7 @@ If you prefer RGB you can use the color function.
 	var green = Draw16.color(0, 255, 0);
 	var blue  = Draw16.color(0, 0, 255);
 
-#### Limited color sets
+### Limited color sets
 
 You may want to not use the whole 24 bit color spectrum, because old games had very limited ressources. The first games ran on monochrome monitors with only two colors, often white (or green) on black.
 
@@ -117,7 +121,7 @@ You may want to not use the whole 24 bit color spectrum, because old games had v
 | ![#AA5500](https://placehold.it/15/AA5500/AA5500?text=+) `0x0055AA` Brown | ![#FFFF55](https://placehold.it/15/FFFF55/FFFF55?text=+) `0x55FFFF` Yellow |
 | ![#AAAAAA](https://placehold.it/15/AAAAAA/AAAAAA?text=+) `0xAAAAAA` Light Gray | ![#FFFFFF](https://placehold.it/15/FFFFFF/FFFFFF?text=+) `0xFFFFFF` White |
 
-### Color drawing functions
+## Color drawing functions
 
 Colors can be used to draw pixels and basic shapes, filled and unfilled.
 
@@ -139,7 +143,7 @@ Colors can be used to draw pixels and basic shapes, filled and unfilled.
 ![Draw16.drawRectangleFill](docimg/Draw16.drawRectangleFill.png "drawRectangleFill")  
 **Draw16.drawRectangleFill**(color, x, y, width, height) - fill a colored rectangle at x, y with width x height
 
-### Textures
+## Textures
 
 ![Example texture](docimg/texture_preview.png "Example texture")  
 *(Example texture)*
@@ -156,7 +160,7 @@ The loaded texture will be available as variable
 
 Use PNG files as images for best results.
 
-### Texture drawing functions
+## Texture drawing functions
 
 **Draw16.drawArea** - draw an area of 16x16 pixel chips, multiple calls  
 **Draw16.drawArea**(texture, targetX, targetY) - draw the whole texture  
@@ -186,7 +190,7 @@ Important: The unit of the target position (x, y) is pixel while every other par
 
 **Draw16.drawChip**(texture, sourceX, sourceY, targetX, targetY) - draw a single 16x16 pixel chip from texture sourceX, sourceY to targetX, targetY.
 
-You can use the drawArea function to draw a signle chip as well. This function is a little bit faster.
+You can use the drawArea function to draw a signle chip as well. The drawChip function is a little bit faster.
 
 **Example**
 
@@ -200,7 +204,7 @@ You can use the drawArea function to draw a signle chip as well. This function i
 
 ![Draw16.drawChip](docimg/Draw16.drawChip.png "Draw16.drawChip")  
 
-### Text
+## Text
 
 Draw16 supports bitmap fonts. See font.png from the ressources folder.
 
@@ -212,23 +216,52 @@ There are also symbols for rupees, hearts, arrows and gamepad buttons. Edit it a
 
 The font must be loaded as a regular texture. There can be more than one font in a texture. The first font should be a regular font and the second should be bold.
 
-### Text drawing functions
+## Text drawing functions
 
 **Draw16.drawText8**(texture, font, color, text, x, y) - draw text at x, y using a texture, font and color  
-The default value for font is 0 and the default for bold text is 1. Special characters can be drawn using ~ right before the character.
+The default value for font is 0 and the default for bold text is 1.  
+Special characters can be drawn using ~ right before the character.
+
+**Some examples**
+
+![Hello world](docimg/text_default.png "Hello world")  
+
+	Draw16.drawText8(Draw16.texture.font, 0, 0x000000, 'Hello world!', 4, 4);
+
+![Hello bold](docimg/text_bold.png "Hello bold")  
+
+	Draw16.drawText8(Draw16.texture.font, 1, 0x000000, 'Hello bold!', 4, 4);
+
+![Hello color](docimg/text_color.png "Hello color")  
+
+	Draw16.drawText8(Draw16.texture.font, 0, 0x0070e0, 'Hello color!', 4, 4);
+
+![Konami code](docimg/text_conami.png "Konami code")  
+
+	Draw16.drawText8(Draw16.texture.font, 0, 0x000000, '~8~8~2~2~4~6~4~6~-~+', 4, 4);
+	
+![Hearts](docimg/text_hearts.png "Hearts")  
+
+	Draw16.drawText8(Draw16.texture.font, 0, 0x0000ff, '~)~)~(', 4, 4);
+
+![German chars](docimg/text_german.png "German chars")  
+
+	Draw16.drawText8(Draw16.texture.font, 0, 0x000000, 'German chars: ~A~O~U~a~o~u~s', 4, 4);
+
 
 This part is under construction. Transparency, 16px height and monospace fonts are not available yet.
 
-### Setup functions
+## Setup functions
 
 **Draw16.init**(width, height) - Initialize Draw16 with width x height as screen resolution  
 **Draw16.installFullscreen**() - Set the drawing area to fullscreen  
 **Draw16.loadTexture**(image) - Load an already loaded image as texture, return its id  
 **Draw16.loadTextureAsync**(name, src, cb) - Load an image from src as texture, name it and call cb as callback
 
-### Parameters
+## Parameters
 
 **Draw16.ready** - read only, true if Draw16 is ready to use
+**Draw16.canvas** - read only, the HTML canvas element
 
 **Draw16.fullscreen** - read only, true if Draw16 is installed in fullscreen mode  
 **Draw16.fitMode** - manage the aspect ratio and scaling (see Fullscreen)
@@ -246,7 +279,7 @@ This part is under construction. Transparency, 16px height and monospace fonts a
 
 **Draw16.texture** - read only, list of all loaded textures
 
-## Fullscreen mode
+# Fullscreen mode
 
 If you do not plan to use HTML components alongside your drawing area, you should run Draw16 in fullscreen mode:
 
@@ -279,7 +312,7 @@ Hint: Use the maximum screen ratio that you want to support. Content on the left
 **Draw16.FIT_HORIZONTAL**  
 FIT_HORIZONTAL is the same as FIT_VERTICAL using the width of the screen instead of height.
 
-### Advanced: Best practice for a fully covered screen
+## Advanced: Best practice for a fully covered screen
 
 The default setting often leads to black bars on the screen borders. There is no way this section can match every possible game or scenario, but this is a good start:
 
@@ -292,7 +325,7 @@ The default setting often leads to black bars on the screen borders. There is no
 
 This works only for landscape screens and messes up when a smartphone rotates. Show a "rotate phone" info text if the device is in portrait mode and locking is not set.
 
-## HTML mix mode
+# HTML mix mode
 
 You can mix Draw16 with HTML easily. Do not call the installFullscreen function. Add a canvas __above__ the script tag.
 
@@ -313,7 +346,7 @@ The id must be `draw16Canvas`. You can use normal HTML and CSS around it. You ne
 		-ms-interpolation-mode: nearest-neighbor;
 	}
 
-## RPG Maker resources
+# RPG Maker resources
 
 Welcome RM2K veterans! This is what you need to know in order to use RPG Maker ressources with Draw16.
 
@@ -329,10 +362,10 @@ Ground or water patterns are not supported.
 ![RPG Maker Charset](docimg/rm2k_charset.png "RPG Maker Charset")  
 RPG Maker uses 24x32 pixel per character, but Draw16 only supports 16 pixel chips. Extend the image to 32x32 pixel per character animation frame, remove the background color and you are good to go.
 
-## Limits
+# Limits
 
 If you need modern graphics, a screen resolution higher than 480x320, anti-aliasing, sprite rotation or fancy effects you should definitely consider using a game engine like pixi.js. I am not getting paid for saying that [pixi.js](http://www.pixijs.com/) is awesome! Give it a try. Just keep in mind that it is not optimized for low-res games.
 
-## Feedback
+# Feedback
 
 Do you like my work? Share it. Tell me. Tell others. I would love to hear that my engine is used in production. You do not like it? Tell me why. I am realy willing to improve this project. Your feedback counts - thank you!
