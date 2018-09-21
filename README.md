@@ -16,7 +16,7 @@ Draw16 draws pixels, text, lines, rectangles, ellipses and chips (16x16 pixel te
 
 This is up to you. You can create games from monochrome vector graphics to 24 bit color sprites. Here are two examples:
 
-![Asteroids](docimg/sample_asteroids.png "Asteroids")
+![Asteroids](docimg/sample_asteroids2.png "Asteroids")
 ![Carl Box](docimg/sample_carl.png "Carl Box")
 
 # Contents
