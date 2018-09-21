@@ -236,7 +236,7 @@ Special characters can be drawn using ~ right before the character.
 
 	Draw16.drawText8(Draw16.texture.font, 0, 0x0070e0, 'Hello color!', 4, 4);
 
-![Konami code](docimg/text_conami.png "Konami code")  
+![Konami code](docimg/text_konami.png "Konami code")  
 
 	Draw16.drawText8(Draw16.texture.font, 0, 0x000000, '~8~8~2~2~4~6~4~6~-~+', 4, 4);
 	
