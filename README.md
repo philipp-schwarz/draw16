@@ -23,6 +23,8 @@ This is up to you. You can create games from monochrome vector graphics to 24 bi
 ![CarlBox editor](docimg/sample_carl_editor.png "CarlBox editor")
 ![CarlBox level](docimg/sample_carl_level.png "CarlBox level")  
 
+*Source: CarlBox, Space Asteroids - see individual licenses*
+
 # Contents
 
 - [Getting started](#getting-started)
