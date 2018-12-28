@@ -1,6 +1,6 @@
 # Draw16
 
-![Size 420kb](https://img.shields.io/badge/size-420kb-brightgreen.svg "Size 420kb")
+![Size 208kb](https://img.shields.io/badge/size-208kb-brightgreen.svg "Size 208kb")
 ![No dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg "No dependencies")
 ![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg "MIT license")
 
@@ -273,7 +273,7 @@ This part is under construction. Transparency, 16px height and monospace fonts a
 
 ## Parameters
 
-**Draw16.ready** - read only, true if Draw16 is ready to use
+**Draw16.ready** - read only, true if Draw16 is ready to use  
 **Draw16.canvas** - read only, the HTML canvas element
 
 **Draw16.fullscreen** - read only, true if Draw16 is installed in fullscreen mode  

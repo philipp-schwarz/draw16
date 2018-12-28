@@ -1,4 +1,4 @@
-class Draw16 { }
+Draw16 = {};
 
 Draw16.canvas = null;
 
