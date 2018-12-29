@@ -62,7 +62,7 @@ To get started quickly select a demo and edit it to your needs. Playing with fun
 
 The library needs to be loaded inside of the ```<body>``` tag:
 
-    <script src="../lib/Draw16.js"></script>
+    <script src="../dist/Draw16.js"></script>
 
 Init functions set up everything we need:
 
