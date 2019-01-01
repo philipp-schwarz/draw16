@@ -543,25 +543,11 @@ extern "C" void d16Init(int width, int height) {
 	buffer = new uint8_t[bufferWidth * bufferHeight * 4];
 
 
-	// Fill screen
+	// Init screen
 	if (SDL_MUSTLOCK(screen))
 		SDL_LockSurface(screen);
 
-	for (y=0; y<screenHeight; y++) {
-		for (x=0; x<screenWidth; x++) {
-			if (x%16 == 0 || y%16 == 0) {
-				((Uint8*)screen->pixels)[c++] = 0x44;
-				((Uint8*)screen->pixels)[c++] = 0x44;
-				((Uint8*)screen->pixels)[c++] = 0x44;
-			}
-			else {
-				((Uint8*)screen->pixels)[c++] = 0;
-				((Uint8*)screen->pixels)[c++] = 0;
-				((Uint8*)screen->pixels)[c++] = 0;
-			}
-			((Uint8*)screen->pixels)[c++] = 255;
-		}
-	}
+	d16Clear();
 
 	if (SDL_MUSTLOCK(screen))
 		SDL_UnlockSurface(screen);
