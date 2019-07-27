@@ -61,6 +61,29 @@ Draw16.init = function(width, height) {
 	window.requestAnimationFrame(Draw16.onStepWrapper);
 }
 
+Draw16.resize = function(width, height) {
+	width = width|0;
+	height = height|0;
+	if (!width)
+		width = Draw16.width;
+	if (!height)
+		height = Draw16.height;
+
+	if (Draw16.width == width && Draw16.height == height) {
+		return false;
+	}
+
+	Draw16.width = width;
+	Draw16.height = height;
+
+	Draw16.canvas = document.getElementById('draw16Canvas');
+
+	Draw16Core._d16Resize(width, height);
+	Draw16._fitMode = -1;
+
+	return true;
+}
+
 Draw16.installFullscreen = function() {
 
 	Draw16.fullscreen = true;
@@ -132,6 +155,8 @@ Draw16._updateCanvasSize = function() {
 			canvas.style.transform = 'scale('+(window.innerWidth / Draw16.width)+')';
 	}
 
+	canvas.style.left = 'calc(50% - '+Math.floor(Draw16.width/2)+'px)';
+	canvas.style.top = 'calc(50% - '+Math.floor(Draw16.height/2)+'px)';
 }
 
 Draw16.loadTexture = function(image) {
@@ -175,7 +200,8 @@ Draw16.clear = function() { Draw16Core._d16Clear(); }
 Draw16.drawChip = Draw16Core._d16DrawChip; // texture, gridX, gridY, targetX, targetY
 Draw16.drawChip8 = Draw16Core._d16DrawChip8; // texture, gridX, gridY, targetX, targetY
 Draw16.drawArea = Draw16Core._d16DrawArea; // texture, targetX, targetY, targetWidth, targetHeight, gridX, gridY, sourceWidth, sourceHeight
-Draw16.drawText8 = Draw16Core.cwrap('d16DrawText8', null, ['number', 'number', 'number', 'string', 'number', 'number']); // 
+Draw16.drawText8 = Draw16Core.cwrap('d16DrawText8', null, ['number', 'number', 'number', 'string', 'number', 'number']);
+Draw16.drawText8Length = Draw16Core.cwrap('d16DrawText8Length', 'number', ['number', 'number', 'string']);
 
 Draw16.drawPixel = Draw16Core._d16DrawPixel; // color, targetX, targetY
 Draw16.drawLine = Draw16Core._d16DrawLine; // color, targetX, targetY, targetX2, targetY2

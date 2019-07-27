@@ -29,6 +29,7 @@ This is up to you. You can create games from monochrome vector graphics to 24 bi
 
 - [Getting started](#getting-started)
     - [Get the code](#get-the-code)
+    - [Run draw16](#run-draw16)
     - [The main structure](#the-main-structure)
 - [Performance](#performance)
 - [Function overview](#function-overview)
@@ -54,9 +55,26 @@ Download or clone the git repository and run the demos:
 
     git clone https://github.com/philipp-schwarz/draw16.git
 
-Use Firefox for development. Or Chrome with the parameter --allow-file-access-from-files. Or use a webserver. Maybe... just use Firefox.
-
 To get started quickly select a demo and edit it to your needs. Playing with functions and parameters might be easier than to read the whole documentation.
+
+## Run draw16
+
+Use a local webserver for development. Or Chrome with the parameter --allow-file-access-from-files. You cannot load textures from files without a correct setup.
+
+**Step 1:** Open a terminal and change to the draw16 folder
+
+	cd draw16
+
+**Step 2:** Start a server. When you have npm installed, you can run:
+
+	npm install -g http-server
+	http-server -p 8000
+
+**Step 2:** Open Firefox or Chrome and navigate to:
+
+	http://localhost:8000/demo/selftest.html
+
+You should see geometic forms, text and sprites. If you do not see text like "Abc" something is wrong with your setup.
 
 ## The main structure
 
@@ -79,23 +97,15 @@ See *template.html* for a complete example.
 
 # Performance
 
-If you use Draw16 wrong you will suffer with poor performance. There is no need to read the whole documentation, but you should read this. Always take care of the transparency in your chips / textures. This is key.
+If you use Draw16 wrong you will suffer with poor performance. There is no need to read the whole documentation, but you should read this. Always take care of transparency in your chips / textures. This is key.
 
 ![](docimg/trans0.png "")  
 **No transparency - super fast**  
-Chips without transparency get a special boost and are drawn super fast. Make sure that not a single pixel in your sprite has transparency set, not even 1%!
+Chips without transparency get a special boost and are drawn super fast. Make sure that not a single pixel in your chip has transparency set, not even 1%!
 
 ![](docimg/trans100.png "")  
 **Full transparency - still fast**  
 When your sprite uses only full or no transparency, Draw16 still performs very well. Make sure to use only no (0%) or full (100%) transparency.
-
-![](docimg/trans50.png "")  
-**50% transparency - okay**  
-When a pixel has 50% transparency set (alpha 127/128) it will be processed faster, but not super fast.
-
-![](docimg/trans25.png "")  
-**25% or 75% transparency - still okay**  
-When a pixel has 25% or 75% transparency set (alpha 63/64, 191/192) it will be processed faster than fine transparency.
 
 ![](docimg/transfree.png "")  
 **Fine transparency - slow**  
@@ -267,6 +277,7 @@ This part is under construction. Transparency, 16px height and monospace fonts a
 ## Setup functions
 
 **Draw16.init**(width, height) - Initialize Draw16 with width x height as screen resolution  
+**Draw16.resize**(width, height) - Resize Draw16 with width x height as screen resolution  
 **Draw16.installFullscreen**() - Set the drawing area to fullscreen  
 **Draw16.loadTexture**(image) - Load an already loaded image as texture, return its id  
 **Draw16.loadTextureAsync**(name, src, cb) - Load an image from src as texture, name it and call cb as callback
@@ -327,7 +338,7 @@ FIT_HORIZONTAL is the same as FIT_VERTICAL using the width of the screen instead
 
 ## Advanced: Best practice for a fully covered screen
 
-The default setting often leads to black bars on the screen borders. There is no way this section can match every possible game or scenario, but this is a good start:
+The default setting often leads to black bars on the screen borders. There is no way this section can cover every possible game or scenario, but this is a good start:
 
 - Use FIT_VERTICAL
 - Lock the app in landscape mode. Android, iOS and Cordova (Phonegap) have settings to do so.

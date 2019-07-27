@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Draw16 Demo</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../dist/Draw16.js"></script>
+		<script>
+
+Draw16.init(256, 240);		// Screen resolution, 256x240 for retro games
+Draw16.installFullscreen();	// Fullscreen mode, usually that is what you want
+Draw16.fps = 25;			// Frames per second, do not use values over 60, use 25 for retro games
+
+// Load all textures to Draw16.texture
+Draw16.loadTextureAsync('font', 'ressources/font.png');
+Draw16.loadTextureAsync('ground', 'ressources/ground.png');
+Draw16.loadTextureAsync('tree', 'ressources/tree.png');
+
+Draw16.onStep = function() {
+
+	Draw16.drawArea(Draw16.texture.ground, 0, 0, 2, 2, 0, 0, 1, 1);
+	Draw16.drawArea(Draw16.texture.tree, 4*16, 0);
+	Draw16.drawChip(Draw16.texture.ground, 0, 0, 8*16, 0);
+	Draw16.drawChip(Draw16.texture.ground, 0, 0, 12*16, 0);
+	Draw16.drawArea(Draw16.texture.ground, 12*16, 0, 2, 1, 2, 0, 1, 1);
+
+	Draw16.drawPixel(0xff0000, 1*16, 5*16);
+	Draw16.drawLine(0x0000ff, 5*16, 5*16, 5*16+4, 5*16+9);
+	Draw16.drawRectangle(0x0080ff, 9*16, 5*16, 8, 12);
+	Draw16.drawRectangleFill(0xff0080, 13*16, 5*16, 8, 12);
+
+	Draw16.drawEllipse(0xff0080, 1*16, 9*16, 8, 12);
+	Draw16.drawEllipseFill(0x80ff00, 5*16, 9*16, 8, 12);
+
+	Draw16.drawText8(Draw16.texture.font, 0, 0xffffff, 'Abc', 9*16, 9*16);
+	Draw16.drawText8(Draw16.texture.font, 0, 0x0000ff, '~(', 13*16, 9*16);
+
+	for (var y=0; y<4; y++) {
+		for (var x=0; x<4; x++) {
+			Draw16.drawRectangle(0x80ff00, x*64, y*64, 32, 32);
+		}
+	}
+
+	for (var y=0; y<Draw16.height/100; y++) {
+		for (var x=0; x<Draw16.width/100; x++) {
+			if (
+				(y%2 && !(x%2))
+				|| (!(y%2) && x%2)
+			) Draw16.drawRectangleFill(0x404040, x*100, y*100, 100, 100);
+		}
+	}
+	
+}
+		</script>
+	</body>
+</html>
