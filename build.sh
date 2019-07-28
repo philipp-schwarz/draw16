@@ -23,7 +23,7 @@ emcc src/cpp/*.cpp \
 	-s EXPORT_NAME="'Draw16Core'" \
 	-s "EXTRA_EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap']"
 
-#echo "Making: Draw16.min.js"
-#uglifyjs dist/Draw16.js --compress --output dist/Draw16.min.js
+echo "Making: Draw16.min.js"
+uglifyjs dist/Draw16.js --compress --output dist/Draw16.min.js
 
-#echo "Done!"
+echo "Done!"

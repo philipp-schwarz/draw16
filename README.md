@@ -1,4 +1,4 @@
-# Draw16
+# ![](icon/icon32.png "") Draw16
 
 ![Size 208kb](https://img.shields.io/badge/size-208kb-brightgreen.svg "Size 208kb")
 ![No dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg "No dependencies")
@@ -70,7 +70,7 @@ Use a local webserver for development. Or Chrome with the parameter --allow-file
 	npm install -g http-server
 	http-server -p 8000
 
-**Step 2:** Open Firefox or Chrome and navigate to:
+**Step 3:** Open Firefox or Chrome and navigate to:
 
 	http://localhost:8000/demo/selftest.html
 
