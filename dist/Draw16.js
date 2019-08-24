@@ -11552,6 +11552,10 @@ Draw16.ready = false;
 Draw16.step = 0;
 
 Draw16.fullscreen = false;
+Draw16.fullscreenFactorX = 0;
+Draw16.fullscreenFactorY = 0;
+Draw16.fullscreenOffsetX = 0;
+Draw16.fullscreenOffsetY = 0;
 Draw16.width = 0;
 Draw16.height = 0;
 
@@ -11675,14 +11679,21 @@ Draw16._updateCanvasSize = function() {
 
 	var canvas = Draw16.canvas;
 
-	if (Draw16.fitMode == Draw16.FIT_VERTICAL)
+	if (Draw16.fitMode == Draw16.FIT_VERTICAL) {
+		Draw16.fullscreenFactorX = Draw16.fullscreenFactorY = window.innerHeight / Draw16.height;
 		canvas.style.transform = 'scale('+(window.innerHeight / Draw16.height)+')';
+	}
 	
-	else if (Draw16.fitMode == Draw16.FIT_HORIZONTAL)
+	else if (Draw16.fitMode == Draw16.FIT_HORIZONTAL) {
+		Draw16.fullscreenFactorX = Draw16.fullscreenFactorY = window.innerWidth / Draw16.width;
 		canvas.style.transform = 'scale('+(window.innerWidth / Draw16.width)+')';
+	}
 
-	else if (Draw16.fitMode == Draw16.FIT_STRETCH)
+	else if (Draw16.fitMode == Draw16.FIT_STRETCH) {
+		Draw16.fullscreenFactorX = window.innerWidth / Draw16.width;
+		Draw16.fullscreenFactorY = window.innerHeight / Draw16.height;
 		canvas.style.transform = 'scale('+(window.innerWidth / Draw16.width)+', '+(window.innerHeight / Draw16.height)+')';
+	}
 
 	else if (
 		Draw16.fitMode == Draw16.FIT_CONTAIN
@@ -11694,11 +11705,18 @@ Draw16._updateCanvasSize = function() {
 		if (
 			(Draw16.fitMode == Draw16.FIT_CONTAIN && wr > cr)
 			|| (Draw16.fitMode == Draw16.FIT_COVER && wr < cr)
-		)
+		) {
+			Draw16.fullscreenFactorX = Draw16.fullscreenFactorY = window.innerHeight / Draw16.height;
 			canvas.style.transform = 'scale('+(window.innerHeight / Draw16.height)+')';
-		else
+		}
+		else {
+			Draw16.fullscreenFactorX = Draw16.fullscreenFactorY = window.innerWidth / Draw16.width;
 			canvas.style.transform = 'scale('+(window.innerWidth / Draw16.width)+')';
+		}
 	}
+
+	Draw16.fullscreenOffsetX = Math.round((window.innerWidth - Draw16.width*Draw16.fullscreenFactorX) / 2);
+	Draw16.fullscreenOffsetY = Math.round((window.innerHeight - Draw16.height*Draw16.fullscreenFactorY) / 2);
 
 	canvas.style.left = 'calc(50% - '+Math.floor(Draw16.width/2)+'px)';
 	canvas.style.top = 'calc(50% - '+Math.floor(Draw16.height/2)+'px)';
@@ -11798,10 +11816,8 @@ Draw16.onStepWrapper = function() {
 }
 
 Draw16.screenToPixelPosition = function(x, y) {
-	var f = window.innerHeight / Draw16.height;
-	x = x / f;
-	y = y / f;
-	x = x - (window.innerWidth/f - Draw16.width) / 2;
+	x = x / Draw16.fullscreenFactorX - Draw16.fullscreenOffsetX / Draw16.fullscreenFactorX;
+	y = y / Draw16.fullscreenFactorY - Draw16.fullscreenOffsetY / Draw16.fullscreenFactorY;
 	return { x: Math.floor(x), y: Math.floor(y) };
 }
 
