@@ -166,6 +166,12 @@ Colors can be used to draw pixels and basic shapes, filled and unfilled.
 ![Draw16.drawRectangleFill](docimg/Draw16.drawRectangleFill.png "drawRectangleFill")  
 **Draw16.drawRectangleFill**(color, x, y, width, height) - fill a colored rectangle at x, y with width x height
 
+## Alpha drawing functions
+
+You can draw transparent using alpha drawing functions. There is only one experimental function right now. Alpha is a value between 0 (hidden) and 255 (fully visible).
+
+**Draw16.drawRectangleFillAlpha**(color, alpha, x, y, width, height) - fill a colored rectangle at x, y with width x height
+
 ## Textures
 
 ![Example texture](docimg/texture_preview.png "Example texture")  

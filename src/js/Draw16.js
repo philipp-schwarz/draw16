@@ -228,6 +228,8 @@ Draw16.drawEllipseFill = Draw16Core._d16DrawEllipseFill; // color, targetX, targ
 Draw16.drawRectangle = Draw16Core._d16DrawRectangle; // color, targetX, targetY, width, height
 Draw16.drawRectangleFill = Draw16Core._d16DrawRectangleFill; // color, targetX, targetY, width, height
 
+Draw16.drawRectangleFillAlpha = Draw16Core._d16DrawRectangleFillAlpha; // color, alpha, targetX, targetY, width, height
+
 Draw16.d16DrawShiftLineH = Draw16Core._d16DrawShiftLineH; // y, offset
 
 Draw16.onStep = function() {}

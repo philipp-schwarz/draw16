@@ -6089,6 +6089,181 @@ function _d16DrawRectangle($0,$1,$2,$3,$4) {
  _d16DrawRectangleFill($25,$29,$30,1,$31);
  STACKTOP = sp;return;
 }
+function _d16DrawRectangleFillAlpha($0,$1,$2,$3,$4,$5) {
+ $0 = $0|0;
+ $1 = $1|0;
+ $2 = $2|0;
+ $3 = $3|0;
+ $4 = $4|0;
+ $5 = $5|0;
+ var $10 = 0, $100 = 0, $101 = 0, $102 = 0, $103 = 0, $104 = 0, $105 = 0, $106 = 0, $107 = 0, $108 = 0, $109 = 0, $11 = 0, $110 = 0, $111 = 0, $112 = 0, $113 = 0, $114 = 0, $115 = 0, $116 = 0, $117 = 0;
+ var $118 = 0, $119 = 0, $12 = 0, $120 = 0, $121 = 0, $122 = 0, $123 = 0, $124 = 0, $125 = 0, $126 = 0, $127 = 0, $128 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $20 = 0;
+ var $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0, $27 = 0, $28 = 0, $29 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $40 = 0;
+ var $41 = 0, $42 = 0, $43 = 0, $44 = 0, $45 = 0, $46 = 0, $47 = 0, $48 = 0, $49 = 0, $50 = 0, $51 = 0, $52 = 0, $53 = 0, $54 = 0, $55 = 0, $56 = 0, $57 = 0, $58 = 0, $59 = 0, $6 = 0;
+ var $60 = 0, $61 = 0, $62 = 0, $63 = 0, $64 = 0, $65 = 0, $66 = 0, $67 = 0, $68 = 0, $69 = 0, $7 = 0, $70 = 0, $71 = 0, $72 = 0, $73 = 0, $74 = 0, $75 = 0, $76 = 0, $77 = 0, $78 = 0;
+ var $79 = 0, $8 = 0, $80 = 0, $81 = 0, $82 = 0, $83 = 0, $84 = 0, $85 = 0, $86 = 0, $87 = 0, $88 = 0, $89 = 0, $9 = 0, $90 = 0, $91 = 0, $92 = 0, $93 = 0, $94 = 0, $95 = 0, $96 = 0;
+ var $97 = 0, $98 = 0, $99 = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ STACKTOP = STACKTOP + 48|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abortStackOverflow(48|0);
+ $6 = $0;
+ $7 = $1;
+ $8 = $2;
+ $9 = $3;
+ $10 = $4;
+ $11 = $5;
+ $18 = $8;
+ $19 = (($18) + 16)|0;
+ $8 = $19;
+ $20 = $9;
+ $21 = (($20) + 16)|0;
+ $9 = $21;
+ $22 = $8;
+ $23 = ($22|0)<(0);
+ if ($23) {
+  $24 = $8;
+  $25 = $10;
+  $26 = (($25) + ($24))|0;
+  $10 = $26;
+  $8 = 0;
+ }
+ $27 = $8;
+ $28 = $10;
+ $29 = (($27) + ($28))|0;
+ $30 = HEAP32[128]|0;
+ $31 = ($29|0)>($30|0);
+ if ($31) {
+  $32 = $8;
+  $33 = $10;
+  $34 = (($32) + ($33))|0;
+  $35 = HEAP32[128]|0;
+  $36 = (($34) - ($35))|0;
+  $37 = $10;
+  $38 = (($37) - ($36))|0;
+  $10 = $38;
+ }
+ $39 = $9;
+ $40 = ($39|0)<(0);
+ if ($40) {
+  $41 = $9;
+  $42 = $11;
+  $43 = (($42) + ($41))|0;
+  $11 = $43;
+  $9 = 0;
+ }
+ $44 = $9;
+ $45 = $11;
+ $46 = (($44) + ($45))|0;
+ $47 = HEAP32[129]|0;
+ $48 = ($46|0)>($47|0);
+ if ($48) {
+  $49 = $9;
+  $50 = $11;
+  $51 = (($49) + ($50))|0;
+  $52 = HEAP32[129]|0;
+  $53 = (($51) - ($52))|0;
+  $54 = $11;
+  $55 = (($54) - ($53))|0;
+  $11 = $55;
+ }
+ $56 = $6;
+ $57 = $56 & 255;
+ $15 = $57;
+ $58 = $6;
+ $59 = $58 & 65280;
+ $60 = $59 >>> 8;
+ $16 = $60;
+ $61 = $6;
+ $62 = $61 & 16711680;
+ $63 = $62 >>> 16;
+ $17 = $63;
+ $13 = 0;
+ while(1) {
+  $64 = $13;
+  $65 = $11;
+  $66 = ($64|0)<($65|0);
+  if (!($66)) {
+   break;
+  }
+  $67 = HEAP32[126]|0;
+  $68 = $8;
+  $69 = $9;
+  $70 = $13;
+  $71 = (($69) + ($70))|0;
+  $72 = HEAP32[128]|0;
+  $73 = Math_imul($71, $72)|0;
+  $74 = (($68) + ($73))|0;
+  $75 = $74<<2;
+  $76 = (($67) + ($75)|0);
+  $14 = $76;
+  $12 = 0;
+  while(1) {
+   $77 = $12;
+   $78 = $10;
+   $79 = ($77|0)<($78|0);
+   if (!($79)) {
+    break;
+   }
+   $80 = $15;
+   $81 = $7;
+   $82 = Math_imul($80, $81)|0;
+   $83 = $14;
+   $84 = HEAP8[$83>>0]|0;
+   $85 = $84&255;
+   $86 = $7;
+   $87 = (255 - ($86))|0;
+   $88 = Math_imul($85, $87)|0;
+   $89 = (($82) + ($88))|0;
+   $90 = (($89|0) / 255)&-1;
+   $91 = $90&255;
+   $92 = $14;
+   HEAP8[$92>>0] = $91;
+   $93 = $14;
+   $94 = ((($93)) + 1|0);
+   $14 = $94;
+   $95 = $16;
+   $96 = $7;
+   $97 = Math_imul($95, $96)|0;
+   $98 = $14;
+   $99 = HEAP8[$98>>0]|0;
+   $100 = $99&255;
+   $101 = $7;
+   $102 = (255 - ($101))|0;
+   $103 = Math_imul($100, $102)|0;
+   $104 = (($97) + ($103))|0;
+   $105 = (($104|0) / 255)&-1;
+   $106 = $105&255;
+   $107 = $14;
+   HEAP8[$107>>0] = $106;
+   $108 = $14;
+   $109 = ((($108)) + 1|0);
+   $14 = $109;
+   $110 = $17;
+   $111 = $7;
+   $112 = Math_imul($110, $111)|0;
+   $113 = $14;
+   $114 = HEAP8[$113>>0]|0;
+   $115 = $114&255;
+   $116 = $7;
+   $117 = (255 - ($116))|0;
+   $118 = Math_imul($115, $117)|0;
+   $119 = (($112) + ($118))|0;
+   $120 = (($119|0) / 255)&-1;
+   $121 = $120&255;
+   $122 = $14;
+   HEAP8[$122>>0] = $121;
+   $123 = $14;
+   $124 = ((($123)) + 2|0);
+   $14 = $124;
+   $125 = $12;
+   $126 = (($125) + 1)|0;
+   $12 = $126;
+  }
+  $127 = $13;
+  $128 = (($127) + 1)|0;
+  $13 = $128;
+ }
+ STACKTOP = sp;return;
+}
 function _d16DrawRectangleFill($0,$1,$2,$3,$4) {
  $0 = $0|0;
  $1 = $1|0;
@@ -10986,7 +11161,7 @@ var FUNCTION_TABLE_viiii = [b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,__ZNK10__cxxabiv117
 var FUNCTION_TABLE_viiiii = [b5,b5,b5,b5,b5,b5,b5,b5,b5,b5,__ZNK10__cxxabiv117__class_type_info16search_below_dstEPNS_19__dynamic_cast_infoEPKvib,b5,b5,b5,__ZNK10__cxxabiv120__si_class_type_info16search_below_dstEPNS_19__dynamic_cast_infoEPKvib,b5];
 var FUNCTION_TABLE_viiiiii = [b6,b6,b6,b6,b6,b6,b6,b6,b6,__ZNK10__cxxabiv117__class_type_info16search_above_dstEPNS_19__dynamic_cast_infoEPKvS4_ib,b6,b6,b6,__ZNK10__cxxabiv120__si_class_type_info16search_above_dstEPNS_19__dynamic_cast_infoEPKvS4_ib,b6,b6];
 
-  return { __GLOBAL__sub_I_draw16_cpp: __GLOBAL__sub_I_draw16_cpp, ___errno_location: ___errno_location, _d16Clear: _d16Clear, _d16DrawArea: _d16DrawArea, _d16DrawChip: _d16DrawChip, _d16DrawChip8: _d16DrawChip8, _d16DrawEllipse: _d16DrawEllipse, _d16DrawEllipseFill: _d16DrawEllipseFill, _d16DrawLine: _d16DrawLine, _d16DrawPixel: _d16DrawPixel, _d16DrawRectangle: _d16DrawRectangle, _d16DrawRectangleFill: _d16DrawRectangleFill, _d16DrawShiftLineH: _d16DrawShiftLineH, _d16DrawText8: _d16DrawText8, _d16DrawText8Length: _d16DrawText8Length, _d16Flush: _d16Flush, _d16Init: _d16Init, _d16Resize: _d16Resize, _d16TextureLoad: _d16TextureLoad, _fflush: _fflush, _free: _free, _malloc: _malloc, _memcpy: _memcpy, _memset: _memset, _sbrk: _sbrk, dynCall_ii: dynCall_ii, dynCall_iiii: dynCall_iiii, dynCall_v: dynCall_v, dynCall_vi: dynCall_vi, dynCall_viiii: dynCall_viiii, dynCall_viiiii: dynCall_viiiii, dynCall_viiiiii: dynCall_viiiiii, establishStackSpace: establishStackSpace, getTempRet0: getTempRet0, runPostSets: runPostSets, setTempRet0: setTempRet0, setThrew: setThrew, stackAlloc: stackAlloc, stackRestore: stackRestore, stackSave: stackSave };
+  return { __GLOBAL__sub_I_draw16_cpp: __GLOBAL__sub_I_draw16_cpp, ___errno_location: ___errno_location, _d16Clear: _d16Clear, _d16DrawArea: _d16DrawArea, _d16DrawChip: _d16DrawChip, _d16DrawChip8: _d16DrawChip8, _d16DrawEllipse: _d16DrawEllipse, _d16DrawEllipseFill: _d16DrawEllipseFill, _d16DrawLine: _d16DrawLine, _d16DrawPixel: _d16DrawPixel, _d16DrawRectangle: _d16DrawRectangle, _d16DrawRectangleFill: _d16DrawRectangleFill, _d16DrawRectangleFillAlpha: _d16DrawRectangleFillAlpha, _d16DrawShiftLineH: _d16DrawShiftLineH, _d16DrawText8: _d16DrawText8, _d16DrawText8Length: _d16DrawText8Length, _d16Flush: _d16Flush, _d16Init: _d16Init, _d16Resize: _d16Resize, _d16TextureLoad: _d16TextureLoad, _fflush: _fflush, _free: _free, _malloc: _malloc, _memcpy: _memcpy, _memset: _memset, _sbrk: _sbrk, dynCall_ii: dynCall_ii, dynCall_iiii: dynCall_iiii, dynCall_v: dynCall_v, dynCall_vi: dynCall_vi, dynCall_viiii: dynCall_viiii, dynCall_viiiii: dynCall_viiiii, dynCall_viiiiii: dynCall_viiiiii, establishStackSpace: establishStackSpace, getTempRet0: getTempRet0, runPostSets: runPostSets, setTempRet0: setTempRet0, setThrew: setThrew, stackAlloc: stackAlloc, stackRestore: stackRestore, stackSave: stackSave };
 })
 // EMSCRIPTEN_END_ASM
 (Module.asmGlobalArg, Module.asmLibraryArg, buffer);
@@ -11061,6 +11236,12 @@ var real__d16DrawRectangleFill = asm["_d16DrawRectangleFill"]; asm["_d16DrawRect
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return real__d16DrawRectangleFill.apply(null, arguments);
+};
+
+var real__d16DrawRectangleFillAlpha = asm["_d16DrawRectangleFillAlpha"]; asm["_d16DrawRectangleFillAlpha"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return real__d16DrawRectangleFillAlpha.apply(null, arguments);
 };
 
 var real__d16DrawShiftLineH = asm["_d16DrawShiftLineH"]; asm["_d16DrawShiftLineH"] = function() {
@@ -11182,6 +11363,7 @@ var _d16DrawLine = Module["_d16DrawLine"] = asm["_d16DrawLine"];
 var _d16DrawPixel = Module["_d16DrawPixel"] = asm["_d16DrawPixel"];
 var _d16DrawRectangle = Module["_d16DrawRectangle"] = asm["_d16DrawRectangle"];
 var _d16DrawRectangleFill = Module["_d16DrawRectangleFill"] = asm["_d16DrawRectangleFill"];
+var _d16DrawRectangleFillAlpha = Module["_d16DrawRectangleFillAlpha"] = asm["_d16DrawRectangleFillAlpha"];
 var _d16DrawShiftLineH = Module["_d16DrawShiftLineH"] = asm["_d16DrawShiftLineH"];
 var _d16DrawText8 = Module["_d16DrawText8"] = asm["_d16DrawText8"];
 var _d16DrawText8Length = Module["_d16DrawText8Length"] = asm["_d16DrawText8Length"];
@@ -11772,6 +11954,8 @@ Draw16.drawEllipse = Draw16Core._d16DrawEllipse; // color, targetX, targetY, wid
 Draw16.drawEllipseFill = Draw16Core._d16DrawEllipseFill; // color, targetX, targetY, width, height
 Draw16.drawRectangle = Draw16Core._d16DrawRectangle; // color, targetX, targetY, width, height
 Draw16.drawRectangleFill = Draw16Core._d16DrawRectangleFill; // color, targetX, targetY, width, height
+
+Draw16.drawRectangleFillAlpha = Draw16Core._d16DrawRectangleFillAlpha; // color, alpha, targetX, targetY, width, height
 
 Draw16.d16DrawShiftLineH = Draw16Core._d16DrawShiftLineH; // y, offset
 

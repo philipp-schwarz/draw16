@@ -65,6 +65,8 @@ extern "C" void EMSCRIPTEN_KEEPALIVE d16DrawEllipse(uint32_t color, int xm, int 
 extern "C" void EMSCRIPTEN_KEEPALIVE d16DrawLine(uint32_t color, int x, int y, int x2, int y2);
 extern "C" void EMSCRIPTEN_KEEPALIVE d16DrawShiftLineH(int y, int offset);
 
+extern "C" void EMSCRIPTEN_KEEPALIVE d16DrawRectangleFillAlpha(uint32_t color, int alpha, int x, int y, int width, int height);
+
 extern "C" void EMSCRIPTEN_KEEPALIVE d16Flush();
 extern "C" void EMSCRIPTEN_KEEPALIVE d16Init(int width, int height);
 extern "C" void EMSCRIPTEN_KEEPALIVE d16Resize(int width, int height);
